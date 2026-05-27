@@ -1,2 +1,16 @@
-import Link from 'next/link'; import {useEffect,useState} from 'react'; import {readReports,writeReports} from '../../lib/reportStore';
-export default function History(){const [reports,setReports]=useState([]);useEffect(()=>setReports(readReports()),[]);function del(k){const n=reports.filter(r=>r.key!==k);writeReports(n);setReports(n)}return <main className="shell"><div className="nav"><Link href="/yves-rocher-reporting">Back</Link></div><h1>Upload history</h1><table><thead><tr><th>Week</th><th>Files</th><th>Updated</th><th></th></tr></thead><tbody>{reports.map(r=><tr key={r.key}><td>{r.weekStart} → {r.weekEnd}</td><td>{r.files?.map(f=>f.type).join(', ')}</td><td>{r.updatedAt}</td><td><button className="btn" onClick={()=>del(r.key)}>Delete</button></td></tr>)}</tbody></table></main>}
+import { useEffect, useState } from "react";
+import { deleteReport, getReports } from "../../lib/yr-reporting/storage";
+import { ReportingNav, pageStyle, cardStyle } from "../../lib/yr-reporting/components";
+
+export default function HistoryPage() {
+  const [reports, setReports] = useState([]);
+  useEffect(() => setReports(getReports()), []);
+
+  return <main style={pageStyle}>
+    <ReportingNav />
+    <h1 style={{ fontSize: 40 }}>Uploaded weeks</h1>
+    <div style={cardStyle}>
+      {reports.length ? reports.map((report) => <div key={report.week} style={{ display:"flex", justifyContent:"space-between", padding:"12px 0", borderBottom:"1px solid #e5e7eb" }}><b>{report.week}</b><button onClick={() => setReports(deleteReport(report.week))}>Delete</button></div>) : <p>No uploads yet.</p>}
+    </div>
+  </main>;
+}

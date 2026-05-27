@@ -1,2 +1,31 @@
-import Link from 'next/link'; import {useEffect,useState} from 'react'; import {readReports,summarize} from '../../lib/reportStore';
-export default function Monthly(){const [reports,setReports]=useState([]);useEffect(()=>setReports(readReports()),[]);const s=summarize(reports);return <main className="shell"><div className="nav"><Link href="/yves-rocher-reporting">Back</Link></div><section className="hero"><h1>Monthly / Total view</h1><p>Aggregates all uploaded weeks currently stored in this browser.</p></section><section className="grid"><div className="metric"><span>Created</span><b>{s.created}</b></div><div className="metric"><span>Closed</span><b>{s.closed}</b></div><div className="metric"><span>Orders</span><b>{s.orders}</b></div><div className="metric"><span>Tickets / Order</span><b>{s.orders?Math.round((s.created/s.orders)*100)/100:0}</b></div><div className="metric"><span>CSAT</span><b>{s.csat}</b></div><div className="metric"><span>Resolution</span><b>{s.resolution}</b></div></section></main>}
+import { useEffect, useMemo, useState } from "react";
+import { getReports, getSettings } from "../../lib/yr-reporting/storage";
+import { aggregateMonthly } from "../../lib/yr-reporting/metrics";
+import { ReportingNav, MetricCard, pageStyle, cardStyle, formatNumber } from "../../lib/yr-reporting/components";
+
+export default function MonthlyReport() {
+  const [reports, setReports] = useState([]);
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => { setReports(getReports()); setSettings(getSettings()); }, []);
+  const aggregate = useMemo(() => settings ? aggregateMonthly(reports, settings) : null, [reports, settings]);
+
+  return <main style={pageStyle}>
+    <ReportingNav />
+    <h1 style={{ fontSize: 40 }}>Monthly report</h1>
+    {aggregate && <>
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(4, 1fr)", gap:16 }}>
+        <MetricCard label="Tickets created" value={formatNumber(aggregate.totals.ticketsCreated)} />
+        <MetricCard label="Tickets closed" value={formatNumber(aggregate.totals.ticketsClosed)} />
+        <MetricCard label="Orders" value={formatNumber(aggregate.totals.ordersCount)} />
+        <MetricCard label="Avg tickets / order" value={formatNumber(aggregate.averages.ticketsPerOrder, 2)} />
+      </div>
+      <div style={{ ...cardStyle, marginTop: 16 }}>
+        <h2>Weekly trend</h2>
+        {aggregate.weekly.map((item) => <div key={item.week} style={{ display:"grid", gridTemplateColumns:"2fr repeat(4, 1fr)", gap:10, padding:"10px 0", borderBottom:"1px solid #e5e7eb" }}>
+          <b>{item.week}</b><span>Created: {formatNumber(item.metrics.ticketsCreated)}</span><span>Closed: {formatNumber(item.metrics.ticketsClosed)}</span><span>Orders: {formatNumber(item.metrics.ordersCount)}</span><span>CSAT: {formatNumber(item.metrics.csat, 2)}</span>
+        </div>)}
+      </div>
+    </>}
+  </main>;
+}

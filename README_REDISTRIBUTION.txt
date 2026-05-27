@@ -1,0 +1,1 @@
+Yves Rocher standalone hub. Includes complete /yves-rocher-reporting pages, lib/yr-reporting, finance/data pages, settings, upload, weekly, monthly, history and migration. Browser localStorage data must be exported/imported from the old domain if not stored in source files.
