@@ -1,24 +1,21 @@
-YVES ROCHER STANDALONE HUB - VERCEL FIX
+YVES ROCHER STANDALONE HUB - COMPLETE V2
 
-Your build compiled correctly. The error comes from Vercel Project Settings: Output Directory is set to public.
+Includes:
+- Home
+- Reporting dashboard
+- CSV upload
+- Weekly report
+- Monthly report
+- History
+- Settings
+- Migration / Import Export page
 
-Do this in Vercel:
-1. Open Project Settings.
-2. Go to Build & Development Settings.
-3. Set Framework Preset to Next.js.
-4. Clear Output Directory if possible. It must not be public.
-5. Redeploy.
+Vercel fix:
+- Project Settings > Build & Development Settings
+- Framework Preset: Next.js
+- Output Directory: leave empty OR set to .next
 
-This ZIP also includes vercel.json with outputDirectory set to .next, which should override the wrong public setting.
-
-Pages included:
-- /
-- /yves-rocher-reporting
-- /yves-rocher-reporting/upload
-- /yves-rocher-reporting/weekly
-- /yves-rocher-reporting/monthly
-- /yves-rocher-reporting/history
-- /yves-rocher-reporting/settings
-
-Data note:
-The app uses localStorage key yr_reports. Data already saved in the old Customer Hub browser will not automatically move to the new domain. Use Export in the old hub, then Import in the new YR hub.
+Important about data:
+Existing YR data was stored in the old browser/domain localStorage under yr_reports.
+It cannot be included inside a GitHub zip unless exported first.
+Use /yves-rocher-reporting/migration to copy/paste the old data.

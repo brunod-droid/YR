@@ -1,16 +1,1 @@
-{
-  "name": "yves-rocher-customer-care-hub",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "papaparse": "latest"
-  }
-}
+{"scripts":{"dev":"next dev","build":"next build","start":"next start"},"dependencies":{"@next/bundle-analyzer":"latest","next":"latest","react":"latest","react-dom":"latest","papaparse":"latest"},"devDependencies":{}}

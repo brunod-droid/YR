@@ -1,23 +1,2 @@
-import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
-import { getReports, summarizeWeeks } from '../../lib/reportStore';
-
-export default function Monthly() {
-  const [reports, setReports] = useState([]);
-  useEffect(() => setReports(getReports()), []);
-  const summary = useMemo(() => summarizeWeeks(reports), [reports]);
-  const avgCsat = summary.csatValues.length ? (summary.csatValues.reduce((a,b) => a+b, 0) / summary.csatValues.length).toFixed(1) : '-';
-  return (
-    <main className="shell">
-      <Link href="/" className="back">← Home</Link>
-      <section className="hero"><p className="eyebrow">Monthly report</p><h1>Monthly aggregation</h1><p className="lead">Totals and averages based on uploaded weekly reports.</p></section>
-      <section className="grid cards">
-        <div className="metric"><span>Weeks</span><strong>{reports.length}</strong></div>
-        <div className="metric"><span>Total created</span><strong>{summary.created}</strong></div>
-        <div className="metric"><span>Total closed</span><strong>{summary.closed}</strong></div>
-        <div className="metric"><span>Total orders</span><strong>{summary.orders}</strong></div>
-        <div className="metric"><span>Avg CSAT</span><strong>{avgCsat}</strong></div>
-      </section>
-    </main>
-  );
-}
+import Link from 'next/link'; import {useEffect,useState} from 'react'; import {readReports,summarize} from '../../lib/reportStore';
+export default function Monthly(){const [reports,setReports]=useState([]);useEffect(()=>setReports(readReports()),[]);const s=summarize(reports);return <main className="shell"><div className="nav"><Link href="/yves-rocher-reporting">Back</Link></div><section className="hero"><h1>Monthly / Total view</h1><p>Aggregates all uploaded weeks currently stored in this browser.</p></section><section className="grid"><div className="metric"><span>Created</span><b>{s.created}</b></div><div className="metric"><span>Closed</span><b>{s.closed}</b></div><div className="metric"><span>Orders</span><b>{s.orders}</b></div><div className="metric"><span>Tickets / Order</span><b>{s.orders?Math.round((s.created/s.orders)*100)/100:0}</b></div><div className="metric"><span>CSAT</span><b>{s.csat}</b></div><div className="metric"><span>Resolution</span><b>{s.resolution}</b></div></section></main>}
