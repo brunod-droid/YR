@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f7f6f0; color: #17351f; font-family: Inter, Arial, sans-serif; }
+a { color: inherit; text-decoration: none; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 32px; }
+.hero { border-radius: 30px; padding: 42px; background: linear-gradient(135deg, #ffffff, #e8f1df); box-shadow: 0 18px 60px rgba(23, 53, 31, 0.10); margin-bottom: 24px; }
+.hero.yr { min-height: 340px; display: flex; flex-direction: column; justify-content: center; }
+.eyebrow { text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 900; color: #5a8c3b; }
+h1 { font-size: clamp(42px, 7vw, 86px); line-height: .92; margin: 10px 0; }
+h2 { margin: 0 0 10px; }
+.lead { font-size: 20px; line-height: 1.5; color: #58705d; max-width: 720px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+.card, .panel, .metric { display: block; border-radius: 24px; background: white; padding: 24px; border: 1px solid rgba(23, 53, 31, .08); box-shadow: 0 14px 34px rgba(23, 53, 31, .08); }
+.metric span { display: block; color: #58705d; font-weight: 800; }
+.metric strong { font-size: 44px; display: block; margin-top: 10px; }
+.back { display: inline-block; margin-bottom: 18px; font-weight: 900; color: #5a8c3b; }
+.form { display: grid; gap: 16px; max-width: 720px; }
+label { display: grid; gap: 8px; font-weight: 900; }
+input, textarea { width: 100%; border: 1px solid #d9e4d1; border-radius: 14px; padding: 13px 14px; font-size: 16px; font-family: inherit; }
+textarea { min-height: 160px; }
+button { border: 0; border-radius: 999px; background: #17351f; color: white; padding: 12px 18px; font-weight: 900; cursor: pointer; }
+.actions { display: flex; gap: 10px; margin-bottom: 18px; }
+.success { color: #2f7d32; font-weight: 900; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; border-bottom: 1px solid #e5eadf; text-align: left; }
+.row { grid-template-columns: 1fr 1fr; align-items: center; margin-bottom: 12px; }
+@media (max-width: 720px) { .shell { padding: 18px; } .hero { padding: 26px; } .row { grid-template-columns: 1fr; } }
