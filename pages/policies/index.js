@@ -380,6 +380,26 @@ export default function PoliciesTraining() {
   return (
     <div style={{ minHeight: "100vh", background: `linear-gradient(135deg, ${cream} 0%, #eef7ed 55%, #fff 100%)`, color: dark }}>
       <div style={{ maxWidth: 1180, margin: "0 auto", padding: "28px 20px 60px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <button
+            onClick={() => { window.location.href = "/"; }}
+            style={{
+              border: "1px solid #d7e3d4",
+              background: "#ffffff",
+              color: "#174c2f",
+              borderRadius: 999,
+              padding: "10px 14px",
+              fontWeight: 900,
+              cursor: "pointer",
+              boxShadow: "0 8px 24px rgba(16,32,24,.06)"
+            }}
+          >
+            ← Back to Hub
+          </button>
+          <div style={{ color: "#174c2f", fontWeight: 900, fontSize: 13 }}>
+            /customer-service-policies
+          </div>
+        </div>
         <header style={{
           display: "flex",
           justifyContent: "space-between",
