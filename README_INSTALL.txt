@@ -1,24 +1,24 @@
-YVES ROCHER STANDALONE HUB
+YVES ROCHER STANDALONE HUB - VERCEL FIX
 
-This is a standalone Next.js hub for Yves Rocher Customer Care Reporting.
+Your build compiled correctly. The error comes from Vercel Project Settings: Output Directory is set to public.
 
-Install:
-1. Copy these files into the new GitHub repo.
-2. Run: npm install
-3. Run locally: npm run dev
-4. Deploy on Vercel.
+Do this in Vercel:
+1. Open Project Settings.
+2. Go to Build & Development Settings.
+3. Set Framework Preset to Next.js.
+4. Clear Output Directory if possible. It must not be public.
+5. Redeploy.
 
-Data migration:
-- Old hub data was stored in browser localStorage under key yr_reports.
-- In the old hub browser, export or copy localStorage. In Chrome console:
-  copy(localStorage.getItem('yr_reports'))
-- In this new hub, go to History and paste/import the JSON.
+This ZIP also includes vercel.json with outputDirectory set to .next, which should override the wrong public setting.
 
-Included routes:
-/                         Home
-/yves-rocher-reporting    Home alias
-/yves-rocher-reporting/upload
-/yves-rocher-reporting/weekly
-/yves-rocher-reporting/monthly
-/yves-rocher-reporting/history
-/yves-rocher-reporting/settings
+Pages included:
+- /
+- /yves-rocher-reporting
+- /yves-rocher-reporting/upload
+- /yves-rocher-reporting/weekly
+- /yves-rocher-reporting/monthly
+- /yves-rocher-reporting/history
+- /yves-rocher-reporting/settings
+
+Data note:
+The app uses localStorage key yr_reports. Data already saved in the old Customer Hub browser will not automatically move to the new domain. Use Export in the old hub, then Import in the new YR hub.
