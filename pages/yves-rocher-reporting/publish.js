@@ -32,20 +32,10 @@ export default function PublishDataPage() {
   async function copyContent() {
     try {
       await navigator.clipboard.writeText(fileContent);
-      setMessage("Copied. Now paste it into lib/yr-reporting/sharedReports.js, commit and redeploy.");
+      setMessage("Copied. Paste it into lib/yr-reporting/sharedReports.js, commit and redeploy.");
     } catch {
       setMessage("Copy failed. Select the text manually and copy it.");
     }
-  }
-
-  function downloadFile() {
-    const blob = new Blob([fileContent], { type: "text/javascript" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "sharedReports.js";
-    a.click();
-    URL.revokeObjectURL(url);
   }
 
   function importSharedIntoMyBrowser() {
@@ -57,13 +47,12 @@ export default function PublishDataPage() {
   return (
     <main style={pageStyle}>
       <ReportingNav />
-
       <h1 style={{ fontSize: 42, fontWeight: 900 }}>Publish data for everyone</h1>
 
       <div style={{ ...cardStyle, borderTop: "6px solid #b45309" }}>
         <h2 style={{ marginTop: 0 }}>Simple shared-data system</h2>
         <p style={{ color: "#475569", lineHeight: 1.7 }}>
-          Uploads are still saved in your browser first. This page generates one code file that makes the weeks visible to everyone after redeploy.
+          Uploads are saved in your browser first. This page generates one code file that makes the weeks visible to everyone after redeploy.
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginTop: 18 }}>
@@ -75,15 +64,14 @@ export default function PublishDataPage() {
         <ol style={{ color: "#334155", lineHeight: 1.8, marginTop: 18 }}>
           <li>Upload your CSVs normally.</li>
           <li>Come back to this page.</li>
-          <li>Click <b>Copy sharedReports.js content</b>.</li>
-          <li>In GitHub, open <b>lib/yr-reporting/sharedReports.js</b>.</li>
+          <li>Click Copy sharedReports.js content.</li>
+          <li>In GitHub, open lib/yr-reporting/sharedReports.js.</li>
           <li>Replace the full file content with what you copied.</li>
           <li>Commit changes and let Vercel redeploy.</li>
         </ol>
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
           <button onClick={copyContent} style={buttonStyle}>Copy sharedReports.js content</button>
-          <button onClick={downloadFile} style={{ ...buttonStyle, background: "#0f172a" }}>Download sharedReports.js</button>
           <button onClick={importSharedIntoMyBrowser} style={{ ...buttonStyle, background: "#15803d" }}>Refresh my browser with shared data</button>
         </div>
 
