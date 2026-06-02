@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { getReports } from "../../lib/yr-reporting/storage";
+import { loadReports } from "../../lib/yr-reporting/storage";
 import { ReportingNav, pageStyle, cardStyle, MetricCard, formatNumber } from "../../lib/yr-reporting/components";
 import { toNumber } from "../../lib/yr-reporting/metrics";
 
@@ -85,9 +85,12 @@ export default function FinancePage() {
   const [week, setWeek] = useState("");
 
   useEffect(() => {
-    const stored = getReports();
-    setReports(stored);
-    setWeek(stored[0]?.week || "");
+    async function load() {
+      const stored = await loadReports();
+      setReports(stored);
+      setWeek(stored[0]?.week || "");
+    }
+    load();
   }, []);
 
   const report = reports.find((item) => item.week === week);

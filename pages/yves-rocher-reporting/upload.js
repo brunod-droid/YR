@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Papa from "papaparse";
 import { getWeekRange } from "../../lib/yr-reporting/dates";
-import { getReports, saveReports } from "../../lib/yr-reporting/storage";
+import { loadReports, saveReport, deleteReport } from "../../lib/yr-reporting/storage";
 import { detectFileType, normalizeRows, compactRows, defaultReportData } from "../../lib/yr-reporting/parser";
 import { ReportingNav, pageStyle, cardStyle } from "../../lib/yr-reporting/components";
 
@@ -28,9 +28,9 @@ function sizeMb(value) {
   return (new Blob([JSON.stringify(value)]).size / 1024 / 1024).toFixed(2);
 }
 
-function buildReportForWeek(weekStart) {
+async function buildReportForWeek(weekStart) {
   const { weekEnd, week } = getWeekInfo(weekStart);
-  const reports = getReports();
+  const reports = await loadReports();
   const existing = reports.find((report) => report.week === week);
 
   return {
@@ -45,13 +45,6 @@ function buildReportForWeek(weekStart) {
   };
 }
 
-function saveReportKeepingWeeks(report) {
-  const reports = getReports();
-  const withoutCurrentWeek = reports.filter((item) => item.week !== report.week);
-  const nextReports = [report, ...withoutCurrentWeek].slice(0, 12);
-  saveReports(nextReports);
-}
-
 export default function UploadPage() {
   const [weekStart, setWeekStart] = useState("");
   const [manualOrders, setManualOrders] = useState("");
@@ -59,13 +52,26 @@ export default function UploadPage() {
   const [details, setDetails] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
 
-  function clearReports() {
-    localStorage.removeItem("yr_reports");
-    setDetails([]);
-    setStatus("Cleared. Select a week and upload again.");
+  async function clearReports() {
+    if (!weekStart) {
+      setStatus("Select a week first, then delete it.");
+      return;
+    }
+
+    const { week } = getWeekInfo(weekStart);
+
+    if (!window.confirm(`Delete reporting week ${week}?`)) return;
+
+    try {
+      await deleteReport(week);
+      setDetails([]);
+      setStatus(`Deleted week ${week}.`);
+    } catch (error) {
+      setStatus(`Delete failed: ${error.message}`);
+    }
   }
 
-  function saveManualOrders() {
+  async function saveManualOrders() {
     if (!weekStart) {
       setStatus("Please select a week start first.");
       return;
@@ -78,11 +84,12 @@ export default function UploadPage() {
     }
 
     try {
-      const report = buildReportForWeek(weekStart);
+      setStatus("Saving paid orders in Supabase...");
+      const report = await buildReportForWeek(weekStart);
       report.data.orders = [{ Orders: Math.round(value) }];
-      saveReportKeepingWeeks(report);
-      setStatus(`Manual orders saved: ${Math.round(value)} paid orders for ${report.week}.`);
-      setDetails([{ file: "Manual Orders Input", status: "Saved", message: `${Math.round(value)} paid orders saved. Previous weeks kept.` }]);
+      await saveReport(report);
+      setStatus(`Manual orders saved and shared: ${Math.round(value)} paid orders for ${report.week}.`);
+      setDetails([{ file: "Manual Orders Input", status: "Saved", message: `${Math.round(value)} paid orders saved in shared database.` }]);
     } catch (error) {
       setStatus(`Manual orders save failed: ${error.message}`);
     }
@@ -101,7 +108,7 @@ export default function UploadPage() {
     setDetails([]);
 
     try {
-      const report = buildReportForWeek(weekStart);
+      const report = await buildReportForWeek(weekStart);
       const uploadDetails = [];
 
       for (const file of fileList) {
@@ -129,9 +136,9 @@ export default function UploadPage() {
         });
       }
 
-      saveReportKeepingWeeks(report);
+      await saveReport(report);
       setDetails(uploadDetails);
-      setStatus(`Done. Week ${report.week} saved. Previous weeks kept. Storage size: ${sizeMb(getReports())} MB.`);
+      setStatus(`Done. Week ${report.week} saved in Supabase. Everyone can now see it.`);
     } catch (error) {
       setStatus(`Upload failed: ${error.message}`);
     }
@@ -160,7 +167,7 @@ export default function UploadPage() {
             style={{ padding: 12, borderRadius: 10, border: "1px solid #d1d5db", fontSize: 16 }}
           />
         </div>
-        <div style={{ marginTop: 10, color: "#64748b" }}>Week starts on Sunday. You can upload several weeks; previous weeks are now kept.</div>
+        <div style={{ marginTop: 10, color: "#64748b" }}>Week starts on Sunday. Uploads are saved in Supabase and shared with all users.</div>
       </div>
 
       <div style={{ ...cardStyle, marginTop: 20, background: "#f0fdf4", border: "3px solid #22c55e" }}>
@@ -216,15 +223,15 @@ export default function UploadPage() {
       </div>
 
       <div style={{ ...cardStyle, marginTop: 20, background: "#fff7ed", border: "2px solid #fdba74" }}>
-        <div style={{ fontSize: 22, fontWeight: 950 }}>Storage troubleshooting</div>
+        <div style={{ fontSize: 22, fontWeight: 950 }}>Delete a week</div>
         <div style={{ marginTop: 8, color: "#7c2d12", lineHeight: 1.6 }}>
-          If you see a browser storage/quota error, clear uploaded reporting data, then re-upload.
+          Select the week start above, then delete only that reporting week from the shared database.
         </div>
         <button
           onClick={clearReports}
           style={{ marginTop: 12, background: "#c2410c", color: "#fff", border: "none", borderRadius: 10, padding: "12px 16px", fontWeight: 950, cursor: "pointer" }}
         >
-          Clear uploaded reporting data
+          Delete selected week
         </button>
       </div>
 

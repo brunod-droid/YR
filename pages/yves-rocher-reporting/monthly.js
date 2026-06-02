@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { getReports, getSettings } from "../../lib/yr-reporting/storage";
+import { loadReports, getSettings } from "../../lib/yr-reporting/storage";
 import { aggregateMonthly } from "../../lib/yr-reporting/metrics";
 import { ReportingNav, MetricCard, pageStyle, cardStyle, formatNumber } from "../../lib/yr-reporting/components";
 
@@ -7,7 +7,13 @@ export default function MonthlyReport() {
   const [reports, setReports] = useState([]);
   const [settings, setSettings] = useState(null);
 
-  useEffect(() => { setReports(getReports()); setSettings(getSettings()); }, []);
+  useEffect(() => {
+    async function load() {
+      setReports(await loadReports());
+      setSettings(getSettings());
+    }
+    load();
+  }, []);
   const aggregate = useMemo(() => settings ? aggregateMonthly(reports, settings) : null, [reports, settings]);
 
   return <main style={pageStyle}>

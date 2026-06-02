@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getReports, getSettings } from "../../lib/yr-reporting/storage";
+import { loadReports, getSettings } from "../../lib/yr-reporting/storage";
 import { calculateWeeklyMetrics } from "../../lib/yr-reporting/metrics";
 import { ReportingNav, MetricCard, pageStyle, cardStyle, formatNumber } from "../../lib/yr-reporting/components";
 
@@ -9,8 +9,11 @@ export default function YvesRocherReportingDashboard() {
   const [settings, setSettings] = useState(null);
 
   useEffect(() => {
-    setReports(getReports());
-    setSettings(getSettings());
+    async function load() {
+      setReports(await loadReports());
+      setSettings(getSettings());
+    }
+    load();
   }, []);
 
   const latest = reports[0] || null;
@@ -22,7 +25,7 @@ export default function YvesRocherReportingDashboard() {
       <div style={{ marginBottom: 22 }}>
         <div style={{ color: "#15803d", fontWeight: 900 }}>Yves Rocher Customer Service</div>
         <h1 style={{ fontSize: 42, margin: "6px 0" }}>Reporting Dashboard</h1>
-        <p style={{ color: "#475569", lineHeight: 1.7 }}>Frontend-only V1. CSV files are parsed locally and stored in browser localStorage.</p>
+        <p style={{ color: "#475569", lineHeight: 1.7 }}>CSV files are parsed in the browser and saved in Supabase so all users see the same reports.</p>
       </div>
 
       {!latest && (

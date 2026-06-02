@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { getReports, getSettings } from "../../lib/yr-reporting/storage";
+import { loadReports, getSettings } from "../../lib/yr-reporting/storage";
 import { calculateWeeklyMetrics } from "../../lib/yr-reporting/metrics";
 import { ReportingNav, MetricCard, pageStyle, cardStyle, formatNumber } from "../../lib/yr-reporting/components";
 
@@ -60,10 +60,13 @@ export default function WeeklyReport() {
   const [showAgents, setShowAgents] = useState(true);
 
   useEffect(() => {
-    const stored = getReports();
-    setReports(stored);
-    setWeek(stored[0]?.week || "");
-    setSettings(getSettings());
+    async function load() {
+      const stored = await loadReports();
+      setReports(stored);
+      setWeek(stored[0]?.week || "");
+      setSettings(getSettings());
+    }
+    load();
   }, []);
 
   const report = reports.find((item) => item.week === week);
