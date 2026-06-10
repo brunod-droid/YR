@@ -25,38 +25,48 @@ async function supabaseRequest(tablePath, options = {}) {
   return response.json();
 }
 
-const TABLE = "yr_reports";
+const TABLE = "yr_monthly_insights";
 
 export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
-      const rows = await supabaseRequest(`${TABLE}?select=*&order=week.desc`);
+      const month = req.query.month;
+      if (month) {
+        const rows = await supabaseRequest(`${TABLE}?month=eq.${encodeURIComponent(month)}&select=*&limit=1`);
+        return res.status(200).json(rows?.[0] || null);
+      }
+      const rows = await supabaseRequest(`${TABLE}?select=*&order=month.desc`);
       return res.status(200).json(rows || []);
     }
 
     if (req.method === "POST") {
-      const report = req.body?.report || req.body;
-      if (!report?.week) return res.status(400).json({ error: "Missing report.week." });
+      const p = req.body || {};
+      if (!p.month) return res.status(400).json({ error: "Missing month." });
 
       const rows = await supabaseRequest(TABLE, {
         method: "POST",
         headers: { Prefer: "resolution=merge-duplicates,return=representation" },
         body: JSON.stringify({
-          week: report.week,
-          week_start: report.weekStart || null,
-          week_end: report.weekEnd || null,
-          report,
-          uploaded_at: report.uploadedAt || new Date().toISOString(),
+          month: p.month,
+          title: p.title || `${p.month} Customer Insights`,
+          executive_summary: p.executive_summary || p.executiveSummary || "",
+          customer_mood: p.customer_mood || p.customerMood || "",
+          key_themes: p.key_themes || p.keyThemes || "",
+          pain_points: p.pain_points || p.painPoints || "",
+          risks: p.risks || "",
+          wins: p.wins || "",
+          recommended_actions: p.recommended_actions || p.recommendedActions || "",
+          management_conclusion: p.management_conclusion || p.managementConclusion || "",
           updated_at: new Date().toISOString()
         })
       });
-      return res.status(200).json(rows?.[0] || report);
+      return res.status(200).json(rows?.[0] || p);
     }
 
     if (req.method === "DELETE") {
-      const week = req.query.week || req.body?.week;
-      if (!week) return res.status(400).json({ error: "Missing week." });
-      await supabaseRequest(`${TABLE}?week=eq.${encodeURIComponent(week)}`, {
+      const month = req.query.month || req.body?.month;
+      if (!month) return res.status(400).json({ error: "Missing month." });
+      await supabaseRequest(`${TABLE}?month=eq.${encodeURIComponent(month)}`, {
         method: "DELETE",
         headers: { Prefer: "return=minimal" }
       });
