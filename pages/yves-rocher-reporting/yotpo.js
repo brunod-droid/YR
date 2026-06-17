@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Papa from 'papaparse';
 import { createClient } from '@supabase/supabase-js';
+import { ReportingNav } from '../../lib/yr-reporting/components';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -188,6 +189,7 @@ export default function YotpoReviewsPage() {
   };
 
   return <main className="page">
+    <ReportingNav />
     <div className="header">
       <div>
         <h1>Yotpo Reviews</h1>
