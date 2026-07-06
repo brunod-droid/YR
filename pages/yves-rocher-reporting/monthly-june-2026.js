@@ -1,22 +1,224 @@
-export default function June2026CXBusinessReview() {
-  return <div dangerouslySetInnerHTML={{ __html: `<!doctype html>
+export default function June2026CXBusinessReview(){return <div dangerouslySetInnerHTML={{__html:`<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yves Rocher USA - CX Business Review | June 2026</title>
 <style>
-:root{--yr:#0b4b3b;--yr2:#0f6b50;--mint:#e8f5ef;--bg:#f5f7f6;--ink:#15221d;--muted:#66756f;--line:#d9e5df;--green:#16a34a;--amber:#f59e0b;--red:#dc2626;--blue:#2563eb;--white:#fff}*{box-sizing:border-box}body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0;padding:28px}.wrap{max-width:1220px;margin:auto}.cover{background:linear-gradient(135deg,#063b30 0%,#0b4b3b 52%,#16785b 100%);color:white;border-radius:28px;padding:34px;margin-bottom:22px;position:relative;overflow:hidden}.cover:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-130px;top:-160px;background:rgba(255,255,255,.09)}.kicker{letter-spacing:.12em;text-transform:uppercase;font-weight:800;font-size:12px;opacity:.86}h1{font-size:42px;line-height:1.05;margin:10px 0 8px}h2{font-size:24px;color:var(--yr);margin:0 0 14px}h3{font-size:17px;margin:0 0 10px;color:var(--yr)}p{margin:0 0 10px}.sub{font-size:16px;opacity:.92;max-width:920px;line-height:1.45}.period{display:inline-block;margin-top:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;font-weight:800}.section{background:white;border:1px solid var(--line);border-radius:24px;padding:22px;margin:18px 0;box-shadow:0 3px 12px rgba(9,38,28,.05)}.grid{display:grid;gap:14px}.grid-4{grid-template-columns:repeat(4,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 1px 4px rgba(9,38,28,.04)}.card.soft{background:#fbfdfc}.kpi .label{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.05em}.kpi .value{font-size:34px;font-weight:900;color:var(--yr);margin:6px 0 2px}.kpi .note{font-size:12px;color:var(--muted);line-height:1.3}.big-number{font-size:54px;line-height:.95;font-weight:950;color:var(--yr)}.status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px;font-weight:900;font-size:12px}.good{background:#dcfce7;color:#166534}.watch{background:#fef3c7;color:#92400e}.risk{background:#fee2e2;color:#991b1b}.info{background:#dbeafe;color:#1e40af}.table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#fff}.table th{background:var(--yr);color:#fff;text-align:left;font-size:12px;padding:10px}.table td{padding:10px;border-top:1px solid var(--line);font-size:13px;vertical-align:top}.table tr:nth-child(even) td{background:#fbfdfc}.small{font-size:12px;color:var(--muted)}.mini{font-size:11px;color:var(--muted)}.hero-line{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}.takeaway{display:flex;gap:10px;margin:10px 0;line-height:1.35}.bullet-icon{width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;font-size:12px;flex:0 0 22px;font-weight:900}.bar-wrap{background:#ecf3ef;border-radius:999px;height:13px;overflow:hidden;margin-top:8px}.bar{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--yr2),#47b881)}.splitbar{display:flex;height:18px;border-radius:999px;overflow:hidden;background:#e7eee9}.split-ai{background:#0b4b3b}.split-human{background:#93c5a8}.metric-row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:9px 0;font-size:13px}.metric-row:last-child{border-bottom:0}.pill{display:inline-block;background:var(--mint);color:var(--yr);border:1px solid #cfe2d8;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;margin:3px 4px 3px 0}.timeline{display:grid;grid-template-columns:1fr 50px 1fr;align-items:center;gap:12px}.arrow{font-size:32px;color:var(--yr);text-align:center;font-weight:900}.page-break{page-break-before:always}.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.action-card{border-radius:18px;border:1px solid var(--line);padding:15px;background:#fff}.action-card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.footer{font-size:11px;color:#6b7b75;margin:20px 0;text-align:center}@media(max-width:900px){.grid-4,.grid-3,.grid-2,.hero-line,.actions{grid-template-columns:1fr}.cover h1{font-size:32px}}@media print{body{background:white;padding:0}.wrap{max-width:none}.section,.cover{box-shadow:none;margin:0 0 12px;border-radius:0}.page-break{page-break-before:always}}
-</style></head><body><div class="wrap">
-<section class="cover"><div class="kicker">Yves Rocher USA</div><h1>Customer Experience Business Review</h1><p class="sub">June 2026 executive review. Sources: Gorgias, Shopify, Trustpilot, Yotpo, Notch invoices, CS/Ops insights.</p><div class="period">Reporting period: June 1-30, 2026</div></section>
-<section class="section"><h2>June in 30 seconds</h2><p class="small" style="margin-bottom:14px">This page focuses on the few messages leadership needs before reviewing the details.</p><div class="hero-line"><div class="grid grid-4"><div class="card kpi"><div class="label">CSAT</div><div class="value">4.13</div><div class="note">Gorgias customer experience<br>-0.05 vs May</div></div><div class="card kpi"><div class="label">Automation rate</div><div class="value">80.2%</div><div class="note">Notch messages / total outgoing<br>3,372 / 4,207</div></div><div class="card kpi"><div class="label">Messages / paid order</div><div class="value">0.62</div><div class="note">4,207 outgoing messages<br>6,774 paid orders</div></div><div class="card kpi"><div class="label">CX cost / order</div><div class="value">$0.41</div><div class="note">Human + Notch<br>$2,753 / 6,774</div></div></div><div class="card soft"><h3>CEO takeaways</h3><div class="takeaway"><span class="bullet-icon good">✓</span><span>Customer satisfaction remained stable despite a <b>+25.8%</b> increase in tickets.</span></div><div class="takeaway"><span class="bullet-icon good">✓</span><span>The CX organization is now robust enough to expand into Social Care management.</span></div><div class="takeaway"><span class="bullet-icon good">✓</span><span>A new operational governance model with Notch has been implemented to improve quality and future coverage.</span></div><div class="takeaway"><span class="bullet-icon watch">!</span><span>Subscription cancellations remain the largest avoidable contact driver.</span></div></div></div></section>
-<section class="section"><h2>Executive dashboard</h2><p class="small">Reporting period: June 1-30, 2026. The KPI focus is productivity, automation, satisfaction and cost.</p><div class="grid grid-3"><div class="card"><h3>Customer</h3><div class="metric-row"><b>CSAT</b><span>4.13</span></div><div class="metric-row"><b>Trustpilot</b><span>Very strong, mostly 5★</span></div><div class="metric-row"><b>Yotpo</b><span>Product-level sentiment active</span></div><div class="metric-row"><b>Positive themes</b><span>France, nostalgia, hero products</span></div></div><div class="card"><h3>Operations</h3><div class="metric-row"><b>Tickets created</b><span>2,678</span></div><div class="metric-row"><b>Outgoing messages</b><span>4,207</span></div><div class="metric-row"><b>Messages / paid order</b><span>0.62</span></div><div class="metric-row"><b>Support queue</b><span class="status good">Near zero</span></div></div><div class="card"><h3>Finance</h3><div class="metric-row"><b>Total CX cost</b><span>$2,753</span></div><div class="metric-row"><b>Human cost</b><span>$449</span></div><div class="metric-row"><b>Notch cost</b><span>$2,304</span></div><div class="metric-row"><b>Cost / message</b><span>$0.65</span></div></div></div></section>
-<section class="section page-break"><h2>Month over month</h2><p class="small">Comparison period: May 2026 vs June 2026.</p><table class="table"><tr><th>KPI</th><th>May</th><th>June</th><th>Change</th><th>Management readout</th></tr><tr><td>Paid orders</td><td>6,972</td><td><b>6,774</b></td><td>-2.8%</td><td>Stable order volume.</td></tr><tr><td>Created tickets</td><td>2,129</td><td><b>2,678</b></td><td>+25.8%</td><td>Higher contact volume; key drivers reviewed below.</td></tr><tr><td>Closed tickets</td><td>1,688</td><td><b>2,010</b></td><td>+19.1%</td><td>Team closed more tickets despite higher volume.</td></tr><tr><td>CSAT</td><td>4.18</td><td><b>4.13</b></td><td>-0.05</td><td>Stable satisfaction.</td></tr><tr><td>First response time</td><td>11m 15s</td><td><b>10m 36s</b></td><td>Improved</td><td>Response speed improved.</td></tr><tr><td>Resolution time</td><td>1d 06h</td><td><b>19h 18m</b></td><td>Improved</td><td>Resolution speed improved.</td></tr><tr><td>Customer support queue</td><td>Near zero</td><td><b>Near zero</b></td><td>Healthy</td><td>Daily operational backlog managed.</td></tr><tr><td>Community management queue</td><td>592</td><td><b>1,295</b></td><td>Ongoing</td><td>Open social/review conversations, not unresolved CS backlog.</td></tr><tr><td>Messages / paid order</td><td>To validate</td><td><b>0.62</b></td><td>New KPI</td><td>Outgoing customer-facing messages / paid orders.</td></tr><tr><td>CX cost / paid order</td><td>$0.33</td><td><b>$0.41</b></td><td>+24.1%</td><td>Still materially below Q1 model.</td></tr></table></section>
-<section class="section"><h2>AI & productivity</h2><p class="small">Reporting period: June 1-30, 2026. Taylor = Notch.</p><div class="grid grid-2"><div class="card"><div class="big-number">80.2%</div><h3>Automation rate</h3><p><b>3,372</b> Notch messages out of <b>4,207</b> total outgoing customer-facing messages.</p><div class="splitbar" aria-label="Human vs AI messages"><div class="split-human" style="width:19.8%"></div><div class="split-ai" style="width:80.2%"></div></div><p class="small" style="margin-top:8px"><b>Human:</b> 835 messages (19.8%) · <b>AI:</b> 3,372 messages (80.2%)</p></div><div class="card"><h3>What changed in June</h3><p>Notch usage was already high. The main improvement is not the starting point, but the new way of working with Notch.</p><div class="takeaway"><span class="bullet-icon good">✓</span><span>New operational governance model implemented with Notch.</span></div><div class="takeaway"><span class="bullet-icon good">✓</span><span>Stronger feedback loop to improve automation quality and expand future coverage.</span></div><div class="takeaway"><span class="bullet-icon watch">!</span><span>Operational changes can still be slowed down by a project-based collaboration model.</span></div></div></div><div class="grid grid-4" style="margin-top:14px"><div class="card kpi"><div class="label">Total messages</div><div class="value">4,207</div><div class="note">Outgoing customer-facing messages</div></div><div class="card kpi"><div class="label">AI messages</div><div class="value">3,372</div><div class="note">Taylor / Notch</div></div><div class="card kpi"><div class="label">Human messages</div><div class="value">835</div><div class="note">CSR team</div></div><div class="card kpi"><div class="label">Messages / ticket</div><div class="value">1.57</div><div class="note">4,207 / 2,678 created tickets</div></div></div></section>
-<section class="section page-break"><h2>Financial performance</h2><p class="small">H1 2026. Cost model: Canada Jan-Mar = messages sent x $2.30. Philippines Apr-Jun = Antonette/Kyrene invoices. Notch = actual invoice totals including usage fees.</p><div class="timeline" style="margin:12px 0 18px"><div class="card"><h3>Jan-Mar</h3><p><b>Canada team + Notch</b></p><p class="small">Higher human cost model based on messages sent.</p></div><div class="arrow">→</div><div class="card"><h3>Apr-Jun</h3><p><b>Philippines team + Notch</b></p><p class="small">Lower human cost while AI remains core to the model.</p></div></div><table class="table"><tr><th>Month</th><th>Paid orders</th><th>Tickets</th><th>Canada cost</th><th>Philippines cost</th><th>Notch cost</th><th>Total CX cost</th><th>Cost / order</th><th>Cost / ticket</th></tr><tr><td>Jan</td><td>6,043</td><td>1,888</td><td>$10,000</td><td>$0</td><td>$2,262</td><td>$12,262</td><td>$2.03</td><td>$6.49</td></tr><tr><td>Feb</td><td>3,705</td><td>1,318</td><td>$6,649</td><td>$0</td><td>$1,759</td><td>$8,408</td><td>$2.27</td><td>$6.38</td></tr><tr><td>Mar</td><td>4,438</td><td>1,366</td><td>$6,983</td><td>$0</td><td>$1,809</td><td>$8,792</td><td>$1.98</td><td>$6.44</td></tr><tr><td>Apr</td><td>4,487</td><td>1,393</td><td>$0</td><td>$197</td><td>$1,770</td><td>$1,967</td><td>$0.44</td><td>$1.41</td></tr><tr><td>May</td><td>6,972</td><td>2,129</td><td>$0</td><td>$367</td><td>$1,916</td><td>$2,283</td><td>$0.33</td><td>$1.07</td></tr><tr><td>Jun</td><td>6,774</td><td>2,678</td><td>$0</td><td>$449</td><td>$2,304</td><td>$2,753</td><td>$0.41</td><td>$1.03</td></tr></table><div class="grid grid-3" style="margin-top:14px"><div class="card kpi"><div class="label">June human cost / message</div><div class="value">$0.54</div><div class="note">$449 / 835 human messages</div></div><div class="card kpi"><div class="label">June AI cost / message</div><div class="value">$0.68</div><div class="note">$2,304 / 3,372 AI messages</div></div><div class="card kpi"><div class="label">June total cost / message</div><div class="value">$0.65</div><div class="note">$2,753 / 4,207 messages</div></div></div></section>
-<section class="section"><h2>Customer voice</h2><p class="small">Reporting period: June 1-30, 2026. High-level themes from Trustpilot, Yotpo and CS observations.</p><div class="grid grid-3"><div class="card"><h3>Trustpilot</h3><div class="metric-row"><b>Sentiment</b><span>Mostly 5★</span></div><div class="metric-row"><b>Positive review rate</b><span>Very high</span></div><div class="metric-row"><b>Repeated theme</b><span>France / nostalgia</span></div><div class="metric-row"><b>Advocacy</b><span>Customers recommend to others</span></div></div><div class="card"><h3>Yotpo</h3><div class="metric-row"><b>Purpose</b><span>Product-level sentiment</span></div><div class="metric-row"><b>Hero products</b><span>Monoi, Hair Vinegar</span></div><div class="metric-row"><b>Use</b><span>Identify loved products + product issues</span></div><div class="metric-row"><b>Next</b><span>Add monthly KPI extraction</span></div></div><div class="card"><h3>Customer voice highlights</h3><span class="pill">French heritage</span><span class="pill">Rediscovered brand</span><span class="pill">Hero products</span><span class="pill">Advocacy</span><span class="pill">CS recognition</span><p class="small" style="margin-top:10px">Customer perception remains stronger than operational issue volume suggests.</p></div></div></section>
-<section class="section page-break"><h2>Customer contacts & community management</h2><p class="small">Reporting period: June 1-30, 2026. Distribution from Gorgias/Neva dataset overview.</p><div class="grid grid-2"><div class="card"><h3>Channel distribution</h3><div class="metric-row"><b>Email</b><span>1,209 · 45%</span></div><div class="bar-wrap"><div class="bar" style="width:45%"></div></div><div class="metric-row"><b>Yotpo Reviews</b><span>412 · 15%</span></div><div class="bar-wrap"><div class="bar" style="width:15%"></div></div><div class="metric-row"><b>Facebook</b><span>309 · 12%</span></div><div class="bar-wrap"><div class="bar" style="width:12%"></div></div><div class="metric-row"><b>Chat</b><span>309 · 12%</span></div><div class="bar-wrap"><div class="bar" style="width:12%"></div></div><div class="metric-row"><b>Instagram DM</b><span>205 · 8%</span></div><div class="bar-wrap"><div class="bar" style="width:8%"></div></div><div class="metric-row"><b>Other Instagram</b><span>200 · 8%</span></div><div class="bar-wrap"><div class="bar" style="width:8%"></div></div></div><div class="card"><h3>Top contact drivers</h3><div class="metric-row"><b>Other / No reply</b><span>778</span></div><div class="metric-row"><b>Positive feedback</b><span>238</span></div><div class="metric-row"><b>Negative feedback</b><span>120</span></div><div class="metric-row"><b>Return request</b><span>115</span></div><div class="metric-row"><b>Order status</b><span>108</span></div><div class="metric-row"><b>Promotion issues</b><span>70</span></div><div class="metric-row"><b>Subscription cancellation</b><span>65</span></div><div class="metric-row"><b>DNR</b><span>40</span></div></div></div><div class="grid grid-2" style="margin-top:14px"><div class="card"><h3>Customer support queue</h3><div class="big-number" style="font-size:42px">Near zero</div><p>Daily operational backlog is managed by the team.</p></div><div class="card"><h3>Community management queue</h3><div class="big-number" style="font-size:42px">1,295</div><p>Open social/review conversations managed continuously. This is not unresolved CS backlog.</p></div></div></section>
-<section class="section"><h2>Operational insights</h2><p class="small">Reporting period: June 2026. Sources: CS/Ops insights and Gorgias contact themes.</p><div class="grid grid-3"><div class="card"><h3>Subscription cancellations</h3><p>Large avoidable driver. Customers often do not realize they enrolled in subscription.</p><span class="status watch">Priority</span></div><div class="card"><h3>Returns / refund status</h3><p>Customers contact CS after using return labels to request refund confirmation. Approx. 5 tickets/day.</p><span class="status watch">Automation</span></div><div class="card"><h3>Monoi quality</h3><p>Leakage, damaged bottles, missing seals. Approx. 10 complaints over last 5 days.</p><span class="status watch">Monitoring</span></div><div class="card"><h3>OOS cancellations</h3><p>Current cancellation process for out-of-stock items is inefficient.</p><span class="status info">Process review</span></div><div class="card"><h3>Allergy workflow</h3><p>Standard questionnaire can create friction when it does not affect resolution.</p><span class="status info">Review</span></div><div class="card"><h3>DNR process</h3><p>Declaration is collected but not used in carrier claim/internal workflow.</p><span class="status info">Simplify</span></div></div></section>
-<section class="section page-break"><h2>July actions & risk watch</h2><p class="small">Clear management actions for the coming month. Designed to be updated after the monthly KPI meeting.</p><h3>July priorities</h3><div class="actions"><div class="action-card"><div class="top"><b>Customer Voice / RFM Interviews</b><span class="status info">Planned</span></div><p class="small">Owner: Marketing + CS · ETA: July</p><p>Interview priority customer segments to connect KPI data with qualitative customer needs.</p></div><div class="action-card"><div class="top"><b>Subscription Transparency</b><span class="status watch">Priority</span></div><p class="small">Owner: Ecommerce + CS · ETA: July</p><p>Reduce cancellation contacts by clarifying subscription enrollment at checkout and in confirmation emails.</p></div><div class="action-card"><div class="top"><b>Returns Automation</b><span class="status info">Planned</span></div><p class="small">Owner: CS + Ops · ETA: July</p><p>Trigger proactive return-received/refund-in-progress communication.</p></div><div class="action-card"><div class="top"><b>Social Care Rollout</b><span class="status info">Started</span></div><p class="small">Owner: Neva / CS · ETA: July</p><p>Agents trained by Neva; organization is now ready to manage social care through Gorgias.</p></div></div><h3 style="margin-top:18px">Risks</h3><div class="actions"><div class="action-card"><div class="top"><b>Notch operating model</b><span class="status watch">Medium</span></div><p>Project-based collaboration can slow operational improvements and prioritization.</p><p class="small">Mitigation: weekly governance, clear owners and escalation path.</p></div><div class="action-card"><div class="top"><b>Subscription contacts</b><span class="status watch">High</span></div><p>Largest avoidable contact driver if checkout transparency is not improved.</p><p class="small">Mitigation: checkout wording + email review.</p></div><div class="action-card"><div class="top"><b>Monoi quality</b><span class="status watch">Medium</span></div><p>Product quality complaints could impact reviews if not resolved quickly.</p><p class="small">Mitigation: consolidate cases/photos for Product/Ops.</p></div><div class="action-card"><div class="top"><b>OOS workflow</b><span class="status info">Medium</span></div><p>Manual or inefficient cancellations create avoidable contacts.</p><p class="small">Mitigation: create standard cancellation workflow.</p></div></div></section>
-<section class="section"><h2>KPI dictionary</h2><p class="small">Traceability for leadership. Each KPI should be explainable by source and formula.</p><table class="table"><tr><th>KPI</th><th>Business purpose</th><th>Formula</th><th>Source</th></tr><tr><td>Paid orders</td><td>Commercial denominator for productivity and cost.</td><td>Count unique Shopify orders where Paid at is not empty.</td><td>Shopify orders export.</td></tr><tr><td>Messages / paid order</td><td>Measures customer effort generated per sale.</td><td>Outgoing customer-facing messages / paid orders.</td><td>Gorgias messages + Shopify orders.</td></tr><tr><td>Automation rate</td><td>Measures Notch coverage of customer-facing replies.</td><td>Notch messages / total outgoing customer-facing messages.</td><td>Notch/Taylor message counts.</td></tr><tr><td>Cost / paid order</td><td>Measures CX operating efficiency per commercial order.</td><td>(Human cost + Notch cost) / paid orders.</td><td>Finance invoices + Shopify.</td></tr><tr><td>Cost / message</td><td>Measures productivity of the operating model.</td><td>Total CX cost / outgoing customer-facing messages.</td><td>Finance + Gorgias/Notch.</td></tr><tr><td>CSAT</td><td>Measures customer satisfaction with service experience.</td><td>Average CSAT score in selected period.</td><td>Gorgias customer experience.</td></tr><tr><td>Customer support queue</td><td>Shows real CS operational backlog.</td><td>Open operational support tickets excluding social/review community queue.</td><td>Gorgias workload and channel filters.</td></tr></table></section><div class="footer">Prepared for Yves Rocher USA Monthly KPI Meeting · June 2026 · Static executive HTML version</div></div></body></html>` }} />;
+:root{
+  --green:#063d31;--green2:#0b5b45;--green3:#138260;--mint:#eaf7f1;--mint2:#f5fbf8;
+  --ink:#10231d;--muted:#64756f;--line:#d7e6df;--bg:#f3f7f5;--white:#fff;
+  --amber:#f59e0b;--red:#dc2626;--blue:#2563eb;--shadow:0 14px 34px rgba(9,45,33,.08)
 }
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--ink)}
+.wrap{max-width:1240px;margin:0 auto;padding:28px}.hero{border-radius:34px;padding:34px;background:radial-gradient(circle at 80% -20%,rgba(255,255,255,.22),transparent 34%),linear-gradient(135deg,var(--green),var(--green2) 55%,var(--green3));color:#fff;box-shadow:var(--shadow);overflow:hidden;position:relative}
+.kicker{font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;opacity:.88}.hero h1{font-size:48px;line-height:1;margin:10px 0 8px}.hero p{max-width:980px;font-size:16px;line-height:1.45;opacity:.92}.chip{display:inline-block;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.14);border-radius:999px;padding:8px 12px;font-weight:900;margin-top:8px}
+.section{margin:18px 0;background:var(--white);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow)}
+h2{color:var(--green);margin:0 0 12px;font-size:25px}h3{margin:0 0 9px;color:var(--green);font-size:17px}p{margin:0 0 10px}.small{font-size:12px;color:var(--muted)}.lead{font-size:15px;line-height:1.45;color:#2f423b}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:0 4px 18px rgba(9,45,33,.05)}.soft{background:var(--mint2)}.kpi .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:900}.kpi .value{font-size:38px;font-weight:950;color:var(--green);margin:5px 0 2px}.kpi .note{font-size:12px;color:var(--muted);line-height:1.3}.mega{font-size:76px;line-height:.9;font-weight:950;color:var(--green)}.row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}.row:last-child{border-bottom:0}.status{display:inline-flex;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900}.ok{background:#dcfce7;color:#166534}.warn{background:#fef3c7;color:#92400e}.risk{background:#fee2e2;color:#991b1b}.info{background:#dbeafe;color:#1e40af}
+.table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}.table th{background:var(--green);color:#fff;text-align:left;font-size:12px;padding:10px}.table td{border-top:1px solid var(--line);padding:10px;font-size:13px;vertical-align:top}.table tr:nth-child(even) td{background:#fbfdfc}
+.take{display:flex;gap:10px;margin:10px 0;line-height:1.35}.ico{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:950;flex:0 0 24px}.barbg{height:12px;background:#e9f1ed;border-radius:999px;overflow:hidden;margin:7px 0}.bar{height:100%;background:linear-gradient(90deg,var(--green2),#4dbb8a);border-radius:999px}.split{height:22px;display:flex;border-radius:999px;overflow:hidden;background:#e9f1ed}.human{background:#93c5a8}.ai{background:var(--green)}
+.deck{display:grid;grid-template-columns:1fr 1fr;gap:14px}.timeline{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:14px}.arrow{text-align:center;font-size:36px;font-weight:950;color:var(--green)}
+.pill{display:inline-block;border-radius:999px;padding:6px 10px;background:var(--mint);border:1px solid #cfe4da;color:var(--green);font-weight:900;font-size:12px;margin:3px}.pagebreak{page-break-before:always}
+.action-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.action{background:#fff;border:1px solid var(--line);border-radius:22px;padding:15px;min-height:165px}.action-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:9px}
+.scorecard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.score{border:1px solid var(--line);border-radius:18px;padding:13px;background:#fff}.score b{display:block;color:var(--green);margin-bottom:4px}
+.footer{text-align:center;color:var(--muted);font-size:11px;margin:18px 0}
+@media(max-width:900px){.g4,.g3,.g2,.deck,.action-grid,.scorecard,.timeline{grid-template-columns:1fr}.hero h1{font-size:34px}.mega{font-size:56px}}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}.section,.hero{border-radius:0;box-shadow:none;margin:0 0 10px}.pagebreak{page-break-before:always}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+  <div class="kicker">Yves Rocher USA</div>
+  <h1>Customer Experience Business Review</h1>
+  <p>June marked the consolidation of a more robust Customer Experience operating model: AI automation remains central, the Philippines support team is in place, and the organization is now ready to expand into Social Care management through Gorgias.</p>
+  <span class="chip">Reporting period: June 1–30, 2026</span>
+</section>
+
+<section class="section">
+  <h2>June in 30 seconds</h2>
+  <div class="grid g4">
+    <div class="card kpi"><div class="label">CSAT</div><div class="value">4.13</div><div class="note">Stable satisfaction<br>-0.05 vs May</div></div>
+    <div class="card kpi"><div class="label">Automation rate</div><div class="value">80.2%</div><div class="note">3,372 Notch messages<br>/ 4,207 total outgoing</div></div>
+    <div class="card kpi"><div class="label">Messages / paid order</div><div class="value">0.62</div><div class="note">4,207 outgoing messages<br>/ 6,774 paid orders</div></div>
+    <div class="card kpi"><div class="label">CX cost / order</div><div class="value">$0.41</div><div class="note">$2,753 total CX cost<br>/ 6,774 paid orders</div></div>
+  </div>
+  <div class="deck" style="margin-top:14px">
+    <div class="card soft">
+      <h3>CEO takeaways</h3>
+      <div class="take"><span class="ico ok">✓</span><span>Customer satisfaction remained stable despite <b>+25.8%</b> ticket volume.</span></div>
+      <div class="take"><span class="ico ok">✓</span><span>Support operations are now robust enough to absorb Social Care into Gorgias.</span></div>
+      <div class="take"><span class="ico ok">✓</span><span>New Notch governance model is in place to improve quality, prioritize issues and expand coverage.</span></div>
+      <div class="take"><span class="ico warn">!</span><span>Subscription cancellations remain the largest avoidable contact driver.</span></div>
+    </div>
+    <div class="card soft">
+      <h3>Management message</h3>
+      <p class="lead">June was not about launching more automation from zero. Notch usage was already high. The operational win is the new collaboration model: tighter feedback, clearer priorities, better quality control and a stronger foundation for future coverage improvements.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Executive dashboard</h2>
+  <p class="small">Reporting period: June 2026.</p>
+  <div class="scorecard">
+    <div class="score"><b>Customer</b>CSAT 4.13<br>Trustpilot very strong<br>Yotpo product insights</div>
+    <div class="score"><b>Operations</b>2,678 tickets<br>4,207 outgoing messages<br>Support queue near zero</div>
+    <div class="score"><b>Automation</b>80.2% AI share<br>Taylor = Notch<br>3,372 AI messages</div>
+    <div class="score"><b>Finance</b>$2,753 CX cost<br>$0.41/order<br>$0.65/message</div>
+  </div>
+</section>
+
+<section class="section pagebreak">
+  <h2>Month over month</h2>
+  <p class="small">Comparison period: May 2026 vs June 2026.</p>
+  <table class="table">
+    <tr><th>KPI</th><th>May</th><th>June</th><th>Change</th><th>Readout</th></tr>
+    <tr><td>Paid orders</td><td>6,972</td><td><b>6,774</b></td><td>-2.8%</td><td>Stable order volume.</td></tr>
+    <tr><td>Created tickets</td><td>2,129</td><td><b>2,678</b></td><td>+25.8%</td><td>Volume increase driven by returns, subscriptions, reviews/social and product issues.</td></tr>
+    <tr><td>Closed tickets</td><td>1,688</td><td><b>2,010</b></td><td>+19.1%</td><td>Team output increased.</td></tr>
+    <tr><td>CSAT</td><td>4.18</td><td><b>4.13</b></td><td>-0.05</td><td>Stable satisfaction.</td></tr>
+    <tr><td>First response time</td><td>11m 15s</td><td><b>10m 36s</b></td><td>Improved</td><td>Response speed improved.</td></tr>
+    <tr><td>Resolution time</td><td>1d 06h</td><td><b>19h 18m</b></td><td>Improved</td><td>Resolution speed improved.</td></tr>
+    <tr><td>Support queue</td><td>Near zero</td><td><b>Near zero</b></td><td>Healthy</td><td>Daily operational backlog is managed.</td></tr>
+    <tr><td>Community queue</td><td>592</td><td><b>1,295</b></td><td>Ongoing</td><td>Open social/review conversations; not unresolved CS backlog.</td></tr>
+    <tr><td>Messages / paid order</td><td>To validate</td><td><b>0.62</b></td><td>New KPI</td><td>Outgoing customer-facing messages / paid orders.</td></tr>
+    <tr><td>CX cost / paid order</td><td>$0.33</td><td><b>$0.41</b></td><td>+24.1%</td><td>Still dramatically below Q1 operating model.</td></tr>
+  </table>
+</section>
+
+<section class="section">
+  <h2>AI & productivity</h2>
+  <p class="small">Reporting period: June 2026. Taylor is Notch.</p>
+  <div class="grid g2">
+    <div class="card">
+      <div class="mega">80.2%</div>
+      <h3>AI share of outgoing customer messages</h3>
+      <p><b>3,372</b> messages sent by Notch out of <b>4,207</b> total outgoing customer-facing messages.</p>
+      <div class="split"><div class="human" style="width:19.8%"></div><div class="ai" style="width:80.2%"></div></div>
+      <p class="small" style="margin-top:8px">Human: 835 messages · AI: 3,372 messages</p>
+    </div>
+    <div class="card">
+      <h3>Productivity interpretation</h3>
+      <div class="row"><b>Messages / paid order</b><span>0.62</span></div>
+      <div class="row"><b>Messages / created ticket</b><span>1.57</span></div>
+      <div class="row"><b>Cost / message</b><span>$0.65</span></div>
+      <p class="small" style="margin-top:10px">If messages per order increase, it may be caused by higher AI coverage generating more customer-facing interactions per ticket. This should be monitored with incoming vs outgoing messages in future reports.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section pagebreak">
+  <h2>Financial performance</h2>
+  <p class="small">H1 2026. Canada Jan–Mar = messages sent × $2.30. Philippines Apr–Jun = Antonette/Kyrene invoices. Notch = actual invoice totals.</p>
+  <div class="timeline">
+    <div class="card"><h3>Jan–Mar</h3><p><b>Canada + Notch</b></p><p class="small">Human cost driven by messages sent under Canada model.</p></div>
+    <div class="arrow">→</div>
+    <div class="card"><h3>Apr–Jun</h3><p><b>Philippines + Notch</b></p><p class="small">Lower human cost, Notch remains core automation engine.</p></div>
+  </div>
+  <table class="table" style="margin-top:14px">
+    <tr><th>Month</th><th>Paid orders</th><th>Tickets</th><th>Canada</th><th>Philippines</th><th>Notch</th><th>Total</th><th>Cost / order</th><th>Cost / ticket</th></tr>
+    <tr><td>Jan</td><td>6,043</td><td>1,888</td><td>$10,000</td><td>$0</td><td>$2,262</td><td>$12,262</td><td>$2.03</td><td>$6.49</td></tr>
+    <tr><td>Feb</td><td>3,705</td><td>1,318</td><td>$6,649</td><td>$0</td><td>$1,759</td><td>$8,408</td><td>$2.27</td><td>$6.38</td></tr>
+    <tr><td>Mar</td><td>4,438</td><td>1,366</td><td>$6,983</td><td>$0</td><td>$1,809</td><td>$8,792</td><td>$1.98</td><td>$6.44</td></tr>
+    <tr><td>Apr</td><td>4,487</td><td>1,393</td><td>$0</td><td>$197</td><td>$1,770</td><td>$1,967</td><td>$0.44</td><td>$1.41</td></tr>
+    <tr><td>May</td><td>6,972</td><td>2,129</td><td>$0</td><td>$367</td><td>$1,916</td><td>$2,283</td><td>$0.33</td><td>$1.07</td></tr>
+    <tr><td>Jun</td><td>6,774</td><td>2,678</td><td>$0</td><td>$449</td><td>$2,304</td><td>$2,753</td><td>$0.41</td><td>$1.03</td></tr>
+  </table>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card kpi"><div class="label">Human cost / human message</div><div class="value">$0.54</div><div class="note">$449 / 835 human messages</div></div>
+    <div class="card kpi"><div class="label">AI cost / AI message</div><div class="value">$0.68</div><div class="note">$2,304 / 3,372 AI messages</div></div>
+    <div class="card kpi"><div class="label">Total cost / message</div><div class="value">$0.65</div><div class="note">$2,753 / 4,207 messages</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Customer voice</h2>
+  <p class="small">Reporting period: June 2026.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Trustpilot</h3><p>Very strong sentiment, mostly 5★ reviews.</p><span class="pill">France</span><span class="pill">Nostalgia</span><span class="pill">Advocacy</span><span class="pill">Hero products</span></div>
+    <div class="card"><h3>Yotpo</h3><p>Use product-level reviews to separate hero product demand from operational/product-quality issues.</p><span class="pill">Monoi</span><span class="pill">Hair Vinegar</span><span class="pill">Top products</span></div>
+    <div class="card"><h3>Insight</h3><p>Customer perception is stronger than issue volume suggests: customers love the brand story, France connection and product experience.</p></div>
+  </div>
+</section>
+
+<section class="section pagebreak">
+  <h2>Contacts & community management</h2>
+  <p class="small">Reporting period: June 2026. Gorgias channel distribution from Neva overview.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Channel distribution</h3>
+      <div class="row"><b>Email</b><span>1,209 · 45%</span></div><div class="barbg"><div class="bar" style="width:45%"></div></div>
+      <div class="row"><b>Yotpo Reviews</b><span>412 · 15%</span></div><div class="barbg"><div class="bar" style="width:15%"></div></div>
+      <div class="row"><b>Facebook</b><span>309 · 12%</span></div><div class="barbg"><div class="bar" style="width:12%"></div></div>
+      <div class="row"><b>Chat</b><span>309 · 12%</span></div><div class="barbg"><div class="bar" style="width:12%"></div></div>
+      <div class="row"><b>Instagram DM</b><span>205 · 8%</span></div><div class="barbg"><div class="bar" style="width:8%"></div></div>
+      <div class="row"><b>Other Instagram</b><span>200 · 8%</span></div><div class="barbg"><div class="bar" style="width:8%"></div></div>
+    </div>
+    <div class="card">
+      <h3>Top contact drivers</h3>
+      <div class="row"><b>Other / No reply</b><span>778</span></div>
+      <div class="row"><b>Positive feedback</b><span>238</span></div>
+      <div class="row"><b>Negative feedback</b><span>120</span></div>
+      <div class="row"><b>Return request</b><span>115</span></div>
+      <div class="row"><b>Order status</b><span>108</span></div>
+      <div class="row"><b>Promotion issues</b><span>70</span></div>
+      <div class="row"><b>Subscription cancellation</b><span>65</span></div>
+      <div class="row"><b>DNR</b><span>40</span></div>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>Customer support queue</h3><div class="mega" style="font-size:48px">Near zero</div><p>Operational email/chat queue is managed daily.</p></div>
+    <div class="card"><h3>Community management queue</h3><div class="mega" style="font-size:48px">1,295</div><p>Open social/review conversations managed continuously. This is not unresolved CS backlog.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Operational insights</h2>
+  <div class="grid g3">
+    <div class="card"><h3>Subscription cancellations</h3><p>Customers do not always realize they enrolled in subscription.</p><span class="status warn">Priority</span></div>
+    <div class="card"><h3>Returns / refunds</h3><p>Approx. 5 tickets/day after return labels received back.</p><span class="status warn">Automate</span></div>
+    <div class="card"><h3>Monoi quality</h3><p>Leakage, broken bottles, no seal. Approx. 10 complaints over last 5 days.</p><span class="status warn">Monitor</span></div>
+    <div class="card"><h3>OOS cancellations</h3><p>Current process inefficient and requires simplification.</p><span class="status info">Review</span></div>
+    <div class="card"><h3>Allergy workflow</h3><p>Questionnaire can create friction without changing resolution.</p><span class="status info">Review</span></div>
+    <div class="card"><h3>DNR process</h3><p>Declaration collected but not used in claims/internal workflow.</p><span class="status info">Simplify</span></div>
+  </div>
+</section>
+
+<section class="section pagebreak">
+  <h2>July roadmap & risk watch</h2>
+  <h3>Actions</h3>
+  <div class="action-grid">
+    <div class="action"><div class="action-top"><b>Customer Voice / RFM Interviews</b><span class="status info">Planned</span></div><p>Connect KPI trends with qualitative customer needs.</p><p class="small">Owner: Marketing + CS · July</p></div>
+    <div class="action"><div class="action-top"><b>Subscription Transparency</b><span class="status warn">Priority</span></div><p>Clarify enrollment in checkout and emails to reduce avoidable cancellations.</p><p class="small">Owner: Ecommerce + CS</p></div>
+    <div class="action"><div class="action-top"><b>Returns Automation</b><span class="status info">Planned</span></div><p>Send proactive return received / refund in progress notifications.</p><p class="small">Owner: CS + Ops</p></div>
+    <div class="action"><div class="action-top"><b>Social Care Rollout</b><span class="status info">Started</span></div><p>Agents trained by Neva; team ready to manage social through Gorgias.</p><p class="small">Owner: Neva / CS</p></div>
+  </div>
+  <h3 style="margin-top:18px">Risks</h3>
+  <div class="action-grid">
+    <div class="action"><div class="action-top"><b>Notch operating model</b><span class="status warn">Medium</span></div><p>Project-based collaboration can slow operational improvements.</p><p class="small">Mitigation: weekly governance and escalation path.</p></div>
+    <div class="action"><div class="action-top"><b>Subscription contacts</b><span class="status warn">High</span></div><p>Largest avoidable contact driver.</p><p class="small">Mitigation: checkout and confirmation email review.</p></div>
+    <div class="action"><div class="action-top"><b>Monoi quality</b><span class="status warn">Medium</span></div><p>Quality complaints could impact reviews.</p><p class="small">Mitigation: consolidate cases/photos to Product/Ops.</p></div>
+    <div class="action"><div class="action-top"><b>OOS workflow</b><span class="status info">Medium</span></div><p>Manual cancellations create unnecessary contacts.</p><p class="small">Mitigation: standard OOS cancellation workflow.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>KPI dictionary</h2>
+  <table class="table">
+    <tr><th>KPI</th><th>Business purpose</th><th>Formula</th><th>Source</th></tr>
+    <tr><td>Paid orders</td><td>Commercial denominator for cost and productivity.</td><td>Unique orders where Paid at is not empty.</td><td>Shopify orders export</td></tr>
+    <tr><td>Messages / paid order</td><td>Customer effort generated per sale.</td><td>Outgoing customer-facing messages / paid orders.</td><td>Gorgias/Notch + Shopify</td></tr>
+    <tr><td>Automation rate</td><td>Notch coverage of customer-facing replies.</td><td>Notch messages / total outgoing messages.</td><td>Notch/Taylor message counts</td></tr>
+    <tr><td>Cost / paid order</td><td>CX operating efficiency per order.</td><td>(Human cost + Notch cost) / paid orders.</td><td>Finance invoices + Shopify</td></tr>
+    <tr><td>Cost / message</td><td>Productivity of the operating model.</td><td>Total CX cost / outgoing customer-facing messages.</td><td>Finance + Gorgias/Notch</td></tr>
+    <tr><td>CSAT</td><td>Customer satisfaction with service experience.</td><td>Average CSAT score.</td><td>Gorgias customer experience</td></tr>
+  </table>
+</section>
+
+<div class="footer">Static executive HTML · Yves Rocher USA · June 2026 CX Business Review</div>
+</div>
+</body>
+</html>`}}/>}
