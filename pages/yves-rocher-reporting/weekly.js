@@ -31,7 +31,7 @@ function AgentTable({ agents }) {
       <table style={{ width: "100%", borderCollapse: "collapse", marginTop: 12 }}>
         <thead>
           <tr style={{ textAlign: "left", color: "#64748b", borderBottom: "1px solid #e5e7eb" }}>
-            <th style={{ padding: 10 }}>Agent</th><th style={{ padding: 10 }}>Role</th><th style={{ padding: 10 }}>Assigned tickets</th><th style={{ padding: 10 }}>Messages sent</th><th style={{ padding: 10 }}>CSAT</th><th style={{ padding: 10 }}>CSAT count</th><th style={{ padding: 10 }}>SLA / FRT</th>
+            <th style={{ padding: 10 }}>Agent</th><th style={{ padding: 10 }}>Role</th><th style={{ padding: 10 }}>Assigned tickets</th><th style={{ padding: 10 }}>Messages sent</th><th style={{ padding: 10 }}>CSAT</th><th style={{ padding: 10 }}>CSAT count</th><th style={{ padding: 10 }}>SLA / FRT*</th>
           </tr>
         </thead>
         <tbody>
@@ -90,9 +90,9 @@ export default function WeeklyReport() {
         <>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 20 }}>
             <HighlightKpi label="CSAT" value={metrics.csat ? formatNumber(metrics.csat, 2) : "Not found"} hint={metrics.csatCount ? `${statusHint("csat", metrics.csat)} · ${metrics.csatCount} CSAT responses` : `${statusHint("csat", metrics.csat)} · response count not found`} color={metrics.csat >= 4.2 ? "#16a34a" : "#f59e0b"} />
-            <HighlightKpi label="SLA Global" value={formatHours(metrics.slaGlobal)} hint={statusHint("sla", metrics.slaGlobal, "h")} color={metrics.slaGlobal ? "#16a34a" : "#f59e0b"} />
-            <HighlightKpi label="SLA Notch" value={formatHours(metrics.slaNotch)} hint="AI answer only" color={metrics.slaNotch ? "#16a34a" : "#64748b"} />
-            <HighlightKpi label="SLA Agents" value={formatHours(metrics.slaAgents)} hint="Human agents only" color={metrics.slaAgents ? "#16a34a" : "#64748b"} />
+            <HighlightKpi label="SLA Global" value={formatHours(metrics.slaGlobal)} hint={`${statusHint("sla", metrics.slaGlobal, "h")} · tickets created from week start`} color={metrics.slaGlobal ? "#16a34a" : "#f59e0b"} />
+            <HighlightKpi label="SLA Notch" value={formatHours(metrics.slaNotch)} hint="AI answer only · tickets created from week start" color={metrics.slaNotch ? "#16a34a" : "#64748b"} />
+            <HighlightKpi label="SLA Agents" value={formatHours(metrics.slaAgents)} hint="Human agents only · tickets created from week start" color={metrics.slaAgents ? "#16a34a" : "#64748b"} />
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 20 }}>
@@ -114,7 +114,7 @@ export default function WeeklyReport() {
               <div><h2 style={{ fontSize: 24, fontWeight: 900, margin: 0 }}>Agent drilldown</h2><div style={{ color: "#64748b", marginTop: 6 }}>Sorted by role: AI answer → Human agent → Management</div></div>
               <button onClick={() => setShowAgents(!showAgents)} style={{ background: "#0f172a", color: "#fff", border: "none", borderRadius: 10, padding: "10px 14px", fontWeight: 800, cursor: "pointer" }}>{showAgents ? "Hide" : "Show"}</button>
             </div>
-            {showAgents && <AgentTable agents={metrics.agentDrilldown} />}
+            {showAgents && <><AgentTable agents={metrics.agentDrilldown} /><div style={{ color: "#64748b", marginTop: 10, fontSize: 13 }}>* FRT excludes tickets created before the selected week start date.</div></>}
           </div>
 
           <div style={{ ...cardStyle, marginTop: 20 }}>
@@ -127,6 +127,9 @@ export default function WeeklyReport() {
             {showDebug && <div style={{ marginTop: 16, color: "#475569", lineHeight: 1.7 }}>
               <div><b>Order columns:</b></div><pre style={{ whiteSpace: "pre-wrap", background: "#f8fafc", padding: 12, borderRadius: 12 }}>{(metrics.debug?.orderColumns || []).join(", ")}</pre>
               <div><b>Ticket columns:</b></div><pre style={{ whiteSpace: "pre-wrap", background: "#f8fafc", padding: 12, borderRadius: 12 }}>{(metrics.debug?.ticketColumns || []).join(", ")}</pre>
+              <div><b>SLA date filter:</b> Creation date ≥ {metrics.debug?.reportStartDate || "week start not detected"}</div>
+              <div><b>Tickets used for SLA:</b> {metrics.debug?.slaTicketsRows ?? "—"} / {metrics.debug?.ticketsRows ?? "—"}</div>
+              <div><b>Pre-period tickets excluded from SLA:</b> {metrics.debug?.excludedPrePeriodTickets ?? "—"}</div>
               <div><b>Agent metrics columns:</b></div><pre style={{ whiteSpace: "pre-wrap", background: "#f8fafc", padding: 12, borderRadius: 12 }}>{(metrics.debug?.agentMetricsColumns || []).join(", ") || "No agent metrics file detected"}</pre>
             </div>}
           </div>
