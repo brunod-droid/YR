@@ -2,6 +2,10 @@
   "name": "yves-rocher-customer-care-hub",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "packageManager": "npm@10.8.2",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
