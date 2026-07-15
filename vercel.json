@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "rm -rf node_modules && npm_config_cache=/tmp/yr-npm-cache npx --yes npm@10.9.2 install --no-audit --no-fund --legacy-peer-deps"
+}
