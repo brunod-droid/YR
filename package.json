@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
-  "packageManager": "npm@10.8.2",
+  "packageManager": "pnpm@10.18.3",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
