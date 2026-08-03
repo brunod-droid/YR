@@ -5,6 +5,7 @@ const quickLinks = [
   { href: '/yves-rocher-reporting/upload', label: 'Upload CSV', text: 'Import Gorgias and operational files' },
   { href: '/yves-rocher-reporting/weekly', label: 'Weekly Report', text: 'Current week performance review' },
   { href: '/yves-rocher-reporting/monthly', label: 'Monthly Report', text: 'Trends, totals and averages' },
+  { href: '/yves-rocher-reporting/subscription-retention', label: 'Subscription Retention', text: 'UX review, benchmarks and save offers' },
   { href: '/yves-rocher-reporting/history', label: 'History', text: 'Uploaded weeks and archive' },
   { href: '/yves-rocher-reporting/settings', label: 'Settings', text: 'Tag mapping and KPI configuration' },
   { href: '/yves-rocher-reporting/migration', label: 'Migration', text: 'Export or import yr_reports data' },
