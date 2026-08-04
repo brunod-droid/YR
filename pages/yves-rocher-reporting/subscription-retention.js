@@ -13,6 +13,59 @@ const sections = [
   { id: "decisions", n: "08", title: "Decisions with Ron" },
 ];
 
+
+const cancellationCases = [
+  {
+    reason: "I did not know I subscribed",
+    customer: "I only wanted to buy the product once. I did not realize another order would be created automatically.",
+    trigger: "Get the next one free",
+    triggerClass: "free",
+    rationale: "Rebuild trust after an unexpected recurring order while keeping the subscription active.",
+  },
+  {
+    reason: "I still have enough product",
+    customer: "I have not finished the first bottle yet, so I do not need another one now.",
+    trigger: "Skip one occurrence",
+    triggerClass: "skip",
+    rationale: "Give the customer more time without ending the relationship.",
+  },
+  {
+    reason: "I do not like the product",
+    customer: "The product does not suit me and I do not want to receive the same item again.",
+    trigger: "Choose another product",
+    triggerClass: "swap",
+    rationale: "Turn dissatisfaction into discovery and preserve the recurring relationship.",
+  },
+  {
+    reason: "The price is too high",
+    customer: "I like the product, but I cannot justify paying for it again right now.",
+    trigger: "Skip one occurrence",
+    triggerClass: "skip",
+    rationale: "Provide immediate budget relief without using the most expensive goodwill offer.",
+  },
+  {
+    reason: "I want another product",
+    customer: "I would prefer to receive another product from the range next time.",
+    trigger: "Choose another product",
+    triggerClass: "swap",
+    rationale: "Create a cross sell opportunity and make the subscription feel more flexible.",
+  },
+  {
+    reason: "I need a different frequency",
+    customer: "Every two months is too frequent for the way I use this product.",
+    trigger: "Skip one occurrence",
+    triggerClass: "skip",
+    rationale: "Adapt the rhythm now, then discuss a longer delivery frequency for future orders.",
+  },
+  {
+    reason: "Other / unhappy after shipment",
+    customer: "The order was already billed and shipped. Paying around $7 to return it feels unfair.",
+    trigger: "Get the next one free",
+    triggerClass: "free",
+    rationale: "Use a strong recovery gesture when the current flow has already created frustration.",
+  },
+];
+
 const questions = {
   overview: [
     "How large is the cancellation problem today?",
@@ -150,7 +203,27 @@ export default function SubscriptionRetention() {
       </Section>
 
       <Section {...sections[5]} notes={notes} setNotes={setNotes}>
-        <div className="reasonWrap"><div className="reasonPrompt"><small>Agent question</small><h3>“What is the main reason you want to cancel?”</h3><p>Capture one primary reason before selecting a retention offer.</p></div><div className="reasonList">{['I did not know I subscribed','I still have enough product','I do not like the product','The price is too high','I want another product','I need a different frequency','Other'].map((x,i)=><div key={x}><span>{i+1}</span><b>{x}</b><em>Track</em></div>)}</div></div>
+        <div className="reasonIntro">
+          <div className="reasonPrompt"><small>Agent question</small><h3>“What is the main reason you want to cancel?”</h3><p>Capture one primary reason, identify the real customer need, then select the most relevant retention trigger.</p></div>
+          <div className="triggerLegend">
+            <b>Retention triggers</b>
+            <span className="trigger skip">Skip one occurrence</span>
+            <span className="trigger free">Get the next one free</span>
+            <span className="trigger swap">Choose another product</span>
+          </div>
+        </div>
+        <div className="caseTable">
+          <div className="caseHeader"><span>Reason</span><span>Customer case</span><span>Best trigger</span><span>Why this trigger</span></div>
+          {cancellationCases.map((item, i) => (
+            <article className="caseRow" key={item.reason}>
+              <div className="caseReason"><i>{String(i + 1).padStart(2, "0")}</i><b>{item.reason}</b></div>
+              <blockquote>“{item.customer}”</blockquote>
+              <div><span className={`trigger ${item.triggerClass}`}>{item.trigger}</span></div>
+              <p>{item.rationale}</p>
+            </article>
+          ))}
+        </div>
+        <div className="caseNote"><b>CS principle:</b> propose one relevant option, not all three. The offer should answer the customer’s real reason for leaving.</div>
       </Section>
 
       <Section {...sections[6]} notes={notes} setNotes={setNotes}>
@@ -179,11 +252,11 @@ export default function SubscriptionRetention() {
       .issueGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.issueGrid article{padding:17px;border:1px solid #e0e6dd;border-radius:17px;background:#fbfcfa}.issueGrid i{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:#e9f1e3;font-style:normal;font-weight:900;margin-bottom:12px}.issueGrid b{display:block}.issueGrid p{font-size:13px;line-height:1.5;color:#59655d}
       .optionsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.option{padding:18px;border:1px solid #dce5d9;border-radius:20px;background:#fafcf9}.option.recommended{border:2px solid #2f7b45;box-shadow:0 12px 26px rgba(47,123,69,.12)}.option>span{display:inline-block;background:#173f28;color:#fff;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:900;text-transform:uppercase}.option h3{font:800 22px Georgia,serif;margin:13px 0 3px}.option>small{color:#748078}.offer{display:grid;grid-template-columns:24px 1fr auto;gap:10px;padding:13px;margin-top:13px;border:1px solid #dfe4dc;border-radius:14px;background:#fff}.offer.selected{border:2px solid #21824a;background:#f3fbf4}.radio{width:20px;height:20px;border:1px solid #a9b2ab;border-radius:50%;display:grid;place-items:center}.selected .radio{background:#21824a;color:#fff}.offer b{font-size:13px}.offer em{display:inline-block;margin-left:6px;background:#dce98a;padding:2px 6px;border-radius:999px;font-size:9px;font-style:normal;font-weight:900}.offer p{font-size:11px;line-height:1.4;color:#68736b;margin:5px 0 0}.offer strong{font-size:13px;white-space:nowrap}.confirm,.selectRow{margin-top:11px;padding:10px;border-radius:12px;background:#fff;border:1px dashed #aebbab;font-size:11px}.selectRow{display:flex;justify-content:space-between}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}.chips em{font-style:normal;background:#e8efe5;border-radius:999px;padding:6px 8px;font-size:10px;font-weight:800}
       .benchmarkGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.benchmarkGrid article{display:grid;grid-template-columns:46px 1fr;gap:14px;padding:19px;border:1px solid #e0e6dd;border-radius:18px;background:#fbfcfa}.benchmarkGrid article>span{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#173f28;color:#fff;font:800 21px Georgia}.benchmarkGrid small{color:#718740;text-transform:uppercase;font-weight:900}.benchmarkGrid h3{font:800 22px Georgia,serif;margin:5px 0 10px}.benchmarkGrid p{font-size:13px;line-height:1.5;color:#58645c}.benchmarkGrid b{font-size:12px;line-height:1.45;color:#2b5433}
-      .reasonWrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px}.reasonPrompt{background:#173f28;color:#fff;padding:26px;border-radius:20px}.reasonPrompt small{color:#dce98a;text-transform:uppercase;font-weight:900}.reasonPrompt h3{font:800 31px/1.12 Georgia,serif;margin:13px 0}.reasonPrompt p{color:#dce4df}.reasonList{display:grid;gap:8px}.reasonList div{display:grid;grid-template-columns:30px 1fr auto;align-items:center;padding:11px 13px;border:1px solid #dfe5dc;border-radius:13px}.reasonList span{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#edf2e9;font-size:11px;font-weight:900}.reasonList em{font-style:normal;color:#78904b;font-size:11px;font-weight:800}
+      .reasonIntro{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}.reasonPrompt{background:#173f28;color:#fff;padding:24px;border-radius:20px}.reasonPrompt small{color:#dce98a;text-transform:uppercase;font-weight:900}.reasonPrompt h3{font:800 29px/1.14 Georgia,serif;margin:12px 0}.reasonPrompt p{color:#dce4df;line-height:1.5;margin-bottom:0}.triggerLegend{display:flex;flex-wrap:wrap;align-content:center;gap:9px;padding:22px;border:1px solid #dfe5dc;border-radius:20px;background:#fbfcfa}.triggerLegend b{width:100%;font-size:15px;margin-bottom:4px}.trigger{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;white-space:nowrap}.trigger.skip{background:#e7f0ff;color:#215b9b}.trigger.free{background:#e6f4df;color:#246f37}.trigger.swap{background:#fff0d8;color:#9a5b16}.caseTable{border:1px solid #dfe5dc;border-radius:18px;overflow:hidden}.caseHeader,.caseRow{display:grid;grid-template-columns:1.05fr 1.65fr .9fr 1.35fr;gap:14px;align-items:center}.caseHeader{padding:11px 14px;background:#edf3e9;color:#45604b;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}.caseRow{padding:15px 14px;border-top:1px solid #e4e8e1;background:#fff}.caseRow:nth-child(odd){background:#fbfcfa}.caseReason{display:flex;align-items:center;gap:10px}.caseReason i{flex:0 0 30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#173f28;color:#fff;font-style:normal;font-size:10px;font-weight:900}.caseReason b{font-size:13px;line-height:1.35}.caseRow blockquote{margin:0;font-size:12px;line-height:1.5;color:#536057;font-style:italic}.caseRow p{margin:0;font-size:12px;line-height:1.48;color:#536057}.caseNote{margin-top:14px;padding:13px 15px;border-radius:14px;background:#fff4de;border:1px solid #ecd8ad;color:#6f5123;font-size:13px}
       .retentionGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.retentionGrid article{padding:20px;border:1px solid #dfe5dc;border-radius:20px;background:#fbfcfa}.retentionGrid article.featured{background:#173f28;color:#fff;transform:translateY(-4px)}.retentionGrid i{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#e8f0e3;font-style:normal;font-size:20px;color:#173f28}.retentionGrid small{display:block;color:#78904b;text-transform:uppercase;font-weight:900;margin-top:13px}.featured small{color:#dce98a}.retentionGrid h3{font:800 24px Georgia,serif;margin:6px 0 10px}.retentionGrid p{line-height:1.5;color:#59655d}.featured p{color:#d9e2dc}.retentionGrid b{display:block;margin-top:13px}.retentionGrid span{font-size:12px;line-height:1.45}.guardrail{margin-top:16px;padding:14px 16px;border-radius:14px;background:#fff1d9;border:1px solid #ecd6a8;color:#77521f}
       .decisionGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.decisionGrid article{display:grid;grid-template-columns:38px 1fr;padding:15px;border:1px solid #e0e5dd;border-radius:15px}.decisionGrid article>span{grid-row:1/6;width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#173f28;color:#fff;font-size:10px;font-weight:900}.decisionGrid h3{margin:2px 0 8px;font-size:16px}.decisionGrid p{margin:5px 0 2px;color:#7c857e;font-size:9px;text-transform:uppercase;font-weight:900}.decisionGrid article div{height:18px;border-bottom:1px solid #aeb8b0}
       @media(max-width:1150px){.sectionCard{grid-template-columns:1fr}.notes{border-left:0;border-top:1px solid #e7e5dc;min-height:300px}.issueGrid{grid-template-columns:repeat(3,1fr)}.optionsGrid,.benchmarkGrid,.retentionGrid{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
-      @media(max-width:760px){.page{padding:12px}.content{padding:20px}.hero h1{font-size:40px}.overviewGrid,.experienceGrid,.reasonWrap,.decisionGrid{grid-template-columns:1fr}.issueGrid{grid-template-columns:1fr}.experienceGrid img{height:280px}.sectionTitle h2{font-size:24px}}
+      @media(max-width:760px){.page{padding:12px}.content{padding:20px}.hero h1{font-size:40px}.overviewGrid,.experienceGrid,.reasonIntro,.decisionGrid{grid-template-columns:1fr}.caseHeader{display:none}.caseRow{grid-template-columns:1fr;gap:10px}.caseRow>div:nth-child(3){justify-self:start}.issueGrid{grid-template-columns:1fr}.experienceGrid img{height:280px}.sectionTitle h2{font-size:24px}}
     `}</style>
   </>;
 }
