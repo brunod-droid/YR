@@ -10,7 +10,9 @@ const sections = [
   { id: "benchmark", n: "05", title: "Competitor benchmark" },
   { id: "reasons", n: "06", title: "Cancellation reasons" },
   { id: "retention", n: "07", title: "Retention strategy" },
-  { id: "decisions", n: "08", title: "Decisions with Ron" },
+  { id: "toolbox", n: "08", title: "Retention toolbox" },
+  { id: "kpis", n: "09", title: "Measuring success" },
+  { id: "decisions", n: "10", title: "Decisions with Ron" },
 ];
 
 
@@ -104,6 +106,18 @@ const questions = {
     "What value limit should apply when customers choose another product?",
     "When should we offer a free next delivery versus a skipped occurrence?",
     "How do we prevent abuse while keeping the experience generous?",
+  ],
+  toolbox: [
+    "Which offers can agents propose directly, and which need manager approval?",
+    "Can Achiad build an A / B / C choice directly in the cancellation flow?",
+    "What is the maximum retention investment per customer?",
+    "Should incentives depend on customer value, reason or subscription age?",
+  ],
+  kpis: [
+    "What exactly counts as a saved subscription?",
+    "Do we measure acceptance immediately or only after the next successful renewal?",
+    "What target Saved Subscription Rate should we set for the pilot?",
+    "How will we compare the cost of the offer with the revenue preserved?",
   ],
   decisions: [
     "Who owns the UX change, the data tracking and the Customer Service playbook?",
@@ -236,8 +250,36 @@ export default function SubscriptionRetention() {
       </Section>
 
       <Section {...sections[7]} notes={notes} setNotes={setNotes}>
+        <div className="toolboxGrid">
+          <article><i>$30</i><small>Financial incentive</small><h3>Give a $30 incentive</h3><p>Offer a controlled credit linked to a future subscription order rather than an immediate cash refund.</p><b>Decision needed</b><span>Eligibility, expiry, minimum order and whether the value is fixed or customer-based.</span></article>
+          <article className="featured"><i>2M</i><small>Strong recovery</small><h3>Give two months free</h3><p>Pause billing or cover the next subscription period to rebuild trust after a poor or confusing experience.</p><b>Decision needed</b><span>Does “two months free” mean one free delivery, two skipped payments, or a delayed renewal?</span></article>
+          <article><i>A/B/C</i><small>Guided choice</small><h3>Offer three clear options</h3><p>Let the customer choose between Option A, Option B or Option C instead of forcing one standard retention answer.</p><b>To check with Achiad</b><span>How can the options be built, tracked and limited in the cancellation flow?</span></article>
+          <article><i>Gift</i><small>Emotional value</small><h3>Add a gift</h3><p>Use a mini product, accessory or discovery item when a gift creates more perceived value than a discount.</p><b>Decision needed</b><span>Gift catalogue, stock availability, fulfilment cost and eligible customer segments.</span></article>
+        </div>
+        <div className="guardrail"><b>Recommended approach:</b> create a simple offer matrix by cancellation reason, customer value and subscription history, with clear agent limits.</div>
+      </Section>
+
+      <Section {...sections[8]} notes={notes} setNotes={setNotes}>
+        <div className="kpiHero">
+          <small>New management KPI</small>
+          <h3>Saved Subscription</h3>
+          <p>A cancellation request that results in the subscription remaining active because the customer accepted a retention solution.</p>
+          <strong>Saved Subscription Rate = Saved subscriptions ÷ Cancellation requests</strong>
+        </div>
+        <div className="kpiGrid">
+          <article><span>01</span><h3>Saved subscriptions</h3><p>Number of cancellation requests successfully retained.</p></article>
+          <article><span>02</span><h3>Offer acceptance rate</h3><p>Accepted retention offers divided by offers proposed.</p></article>
+          <article><span>03</span><h3>Confirmed retention rate</h3><p>Saved customers who complete the next paid renewal, not only accept the initial offer.</p></article>
+          <article><span>04</span><h3>Saved recurring revenue</h3><p>Estimated subscription revenue preserved through retention actions.</p></article>
+          <article><span>05</span><h3>Cost per saved subscription</h3><p>Total incentive, gift and free-product cost divided by confirmed saves.</p></article>
+          <article><span>06</span><h3>Best-performing trigger</h3><p>Compare skip, free product, product swap, $30 incentive, two months free and gift.</p></article>
+        </div>
+        <div className="kpiNote"><b>Important:</b> track both the immediate save and the next successful paid renewal, otherwise the KPI may overstate real retention.</div>
+      </Section>
+
+      <Section {...sections[9]} notes={notes} setNotes={setNotes}>
         <div className="decisionGrid">
-          {['UX option and wording','Commercial pricing model','Retention offer eligibility','Product-swap value limit','Customer Service authority','Test duration and KPIs'].map((x,i)=><article key={x}><span>{String(i+1).padStart(2,'0')}</span><h3>{x}</h3><p>Decision</p><div></div><p>Owner / Deadline</p><div></div></article>)}
+          {['UX option and wording','Commercial pricing model','Retention offer eligibility','$30 incentive rules','Two months free definition','A / B / C technical feasibility with Achiad','Gift strategy','Saved Subscription KPI target','Customer Service authority','Test duration and reporting'].map((x,i)=><article key={x}><span>{String(i+1).padStart(2,'0')}</span><h3>{x}</h3><p>Decision</p><div></div><p>Owner / Deadline</p><div></div></article>)}
         </div>
       </Section>
     </main>
@@ -254,8 +296,8 @@ export default function SubscriptionRetention() {
       .benchmarkGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.benchmarkGrid article{display:grid;grid-template-columns:46px 1fr;gap:14px;padding:19px;border:1px solid #e0e6dd;border-radius:18px;background:#fbfcfa}.benchmarkGrid article>span{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#173f28;color:#fff;font:800 21px Georgia}.benchmarkGrid small{color:#718740;text-transform:uppercase;font-weight:900}.benchmarkGrid h3{font:800 22px Georgia,serif;margin:5px 0 10px}.benchmarkGrid p{font-size:13px;line-height:1.5;color:#58645c}.benchmarkGrid b{font-size:12px;line-height:1.45;color:#2b5433}
       .reasonIntro{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}.reasonPrompt{background:#173f28;color:#fff;padding:24px;border-radius:20px}.reasonPrompt small{color:#dce98a;text-transform:uppercase;font-weight:900}.reasonPrompt h3{font:800 29px/1.14 Georgia,serif;margin:12px 0}.reasonPrompt p{color:#dce4df;line-height:1.5;margin-bottom:0}.triggerLegend{display:flex;flex-wrap:wrap;align-content:center;gap:9px;padding:22px;border:1px solid #dfe5dc;border-radius:20px;background:#fbfcfa}.triggerLegend b{width:100%;font-size:15px;margin-bottom:4px}.trigger{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;white-space:nowrap}.trigger.skip{background:#e7f0ff;color:#215b9b}.trigger.free{background:#e6f4df;color:#246f37}.trigger.swap{background:#fff0d8;color:#9a5b16}.caseTable{border:1px solid #dfe5dc;border-radius:18px;overflow:hidden}.caseHeader,.caseRow{display:grid;grid-template-columns:1.05fr 1.65fr .9fr 1.35fr;gap:14px;align-items:center}.caseHeader{padding:11px 14px;background:#edf3e9;color:#45604b;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}.caseRow{padding:15px 14px;border-top:1px solid #e4e8e1;background:#fff}.caseRow:nth-child(odd){background:#fbfcfa}.caseReason{display:flex;align-items:center;gap:10px}.caseReason i{flex:0 0 30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#173f28;color:#fff;font-style:normal;font-size:10px;font-weight:900}.caseReason b{font-size:13px;line-height:1.35}.caseRow blockquote{margin:0;font-size:12px;line-height:1.5;color:#536057;font-style:italic}.caseRow p{margin:0;font-size:12px;line-height:1.48;color:#536057}.caseNote{margin-top:14px;padding:13px 15px;border-radius:14px;background:#fff4de;border:1px solid #ecd8ad;color:#6f5123;font-size:13px}
       .retentionGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.retentionGrid article{padding:20px;border:1px solid #dfe5dc;border-radius:20px;background:#fbfcfa}.retentionGrid article.featured{background:#173f28;color:#fff;transform:translateY(-4px)}.retentionGrid i{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#e8f0e3;font-style:normal;font-size:20px;color:#173f28}.retentionGrid small{display:block;color:#78904b;text-transform:uppercase;font-weight:900;margin-top:13px}.featured small{color:#dce98a}.retentionGrid h3{font:800 24px Georgia,serif;margin:6px 0 10px}.retentionGrid p{line-height:1.5;color:#59655d}.featured p{color:#d9e2dc}.retentionGrid b{display:block;margin-top:13px}.retentionGrid span{font-size:12px;line-height:1.45}.guardrail{margin-top:16px;padding:14px 16px;border-radius:14px;background:#fff1d9;border:1px solid #ecd6a8;color:#77521f}
-      .decisionGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.decisionGrid article{display:grid;grid-template-columns:38px 1fr;padding:15px;border:1px solid #e0e5dd;border-radius:15px}.decisionGrid article>span{grid-row:1/6;width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#173f28;color:#fff;font-size:10px;font-weight:900}.decisionGrid h3{margin:2px 0 8px;font-size:16px}.decisionGrid p{margin:5px 0 2px;color:#7c857e;font-size:9px;text-transform:uppercase;font-weight:900}.decisionGrid article div{height:18px;border-bottom:1px solid #aeb8b0}
-      @media(max-width:1150px){.sectionCard{grid-template-columns:1fr}.notes{border-left:0;border-top:1px solid #e7e5dc;min-height:300px}.issueGrid{grid-template-columns:repeat(3,1fr)}.optionsGrid,.benchmarkGrid,.retentionGrid{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
+      .toolboxGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.toolboxGrid article{padding:20px;border:1px solid #dfe5dc;border-radius:20px;background:#fbfcfa}.toolboxGrid article.featured{background:#173f28;color:#fff}.toolboxGrid i{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:#e8f0e3;color:#173f28;font-style:normal;font-size:15px;font-weight:900}.toolboxGrid small{display:block;color:#78904b;text-transform:uppercase;font-weight:900;margin-top:13px}.toolboxGrid .featured small{color:#dce98a}.toolboxGrid h3{font:800 24px Georgia,serif;margin:6px 0 10px}.toolboxGrid p{line-height:1.5;color:#59655d}.toolboxGrid .featured p{color:#d9e2dc}.toolboxGrid b{display:block;margin-top:13px}.toolboxGrid span{display:block;font-size:12px;line-height:1.45;margin-top:4px}.kpiHero{padding:24px;border-radius:20px;background:#173f28;color:#fff;margin-bottom:16px}.kpiHero small{color:#dce98a;text-transform:uppercase;font-weight:900}.kpiHero h3{font:800 34px Georgia,serif;margin:9px 0}.kpiHero p{max-width:760px;line-height:1.55;color:#dbe5de}.kpiHero strong{display:inline-block;margin-top:8px;padding:10px 13px;border-radius:12px;background:#fff;color:#173f28}.kpiGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.kpiGrid article{padding:17px;border:1px solid #dfe5dc;border-radius:17px;background:#fbfcfa}.kpiGrid span{display:inline-grid;place-items:center;width:31px;height:31px;border-radius:9px;background:#e8f0e3;color:#173f28;font-size:10px;font-weight:900}.kpiGrid h3{margin:11px 0 7px;font-size:16px}.kpiGrid p{margin:0;font-size:13px;line-height:1.5;color:#59655d}.kpiNote{margin-top:14px;padding:13px 15px;border-radius:14px;background:#fff4de;border:1px solid #ecd8ad;color:#6f5123;font-size:13px}.decisionGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.decisionGrid article{display:grid;grid-template-columns:38px 1fr;padding:15px;border:1px solid #e0e5dd;border-radius:15px}.decisionGrid article>span{grid-row:1/6;width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#173f28;color:#fff;font-size:10px;font-weight:900}.decisionGrid h3{margin:2px 0 8px;font-size:16px}.decisionGrid p{margin:5px 0 2px;color:#7c857e;font-size:9px;text-transform:uppercase;font-weight:900}.decisionGrid article div{height:18px;border-bottom:1px solid #aeb8b0}
+      @media(max-width:1150px){.sectionCard{grid-template-columns:1fr}.notes{border-left:0;border-top:1px solid #e7e5dc;min-height:300px}.issueGrid{grid-template-columns:repeat(3,1fr)}.optionsGrid,.benchmarkGrid,.retentionGrid,.toolboxGrid,.kpiGrid{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
       @media(max-width:760px){.page{padding:12px}.content{padding:20px}.hero h1{font-size:40px}.overviewGrid,.experienceGrid,.reasonIntro,.decisionGrid{grid-template-columns:1fr}.caseHeader{display:none}.caseRow{grid-template-columns:1fr;gap:10px}.caseRow>div:nth-child(3){justify-self:start}.issueGrid{grid-template-columns:1fr}.experienceGrid img{height:280px}.sectionTitle h2{font-size:24px}}
     `}</style>
   </>;
