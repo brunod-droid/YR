@@ -167,6 +167,17 @@ export default function SubscriptionRetention() {
   const [notes, setNotesState] = useState({});
   const [lightbox, setLightbox] = useState(null);
   useEffect(() => { try { setNotesState(JSON.parse(localStorage.getItem("yr_subscription_notes") || "{}")); } catch (_) {} }, []);
+  useEffect(() => {
+    if (!lightbox) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => { if (event.key === "Escape") setLightbox(null); };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [lightbox]);
   const setNotes = (id, value) => { const next = { ...notes, [id]: value }; setNotesState(next); try { localStorage.setItem("yr_subscription_notes", JSON.stringify(next)); } catch (_) {} };
 
   return <>
@@ -317,6 +328,31 @@ export default function SubscriptionRetention() {
           {['UX option and wording','Commercial pricing model','Retention offer eligibility','$30 incentive rules','Two months free definition','A / B / C technical feasibility with Achiad','Gift strategy','Saved Subscription KPI target','Customer Service authority','Test duration and reporting'].map((x,i)=><article key={x}><span>{String(i+1).padStart(2,'0')}</span><h3>{x}</h3><p>Decision</p><div></div><p>Owner / Deadline</p><div></div></article>)}
         </div>
       </Section>
+
+      {lightbox && (
+        <div
+          className="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.alt}
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            type="button"
+            className="lightboxClose"
+            aria-label="Close enlarged image"
+            onClick={() => setLightbox(null)}
+          >
+            ×
+          </button>
+          <img
+            src={lightbox.src}
+            alt={lightbox.alt}
+            onClick={(event) => event.stopPropagation()}
+          />
+          <p>{lightbox.alt}</p>
+        </div>
+      )}
     </main>
     <style jsx global>{`
       html{scroll-behavior:smooth} body{background:#f7f4ee;color:#17351f}.page{min-height:100vh;padding:22px 28px 60px;background:linear-gradient(145deg,#faf8f3,#f1f6ef)}
