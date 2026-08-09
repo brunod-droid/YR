@@ -16,6 +16,127 @@ const sections = [
 ];
 
 
+
+const meetingRecap = {
+  overview: {
+    points: [
+      "Churn is material: roughly half of subscribers do not reach the first replenishment, and retention drops sharply again on later orders.",
+      "Ron recommends following subscriber retention in OrderGroove rather than only subscription-per-item retention.",
+      "A small retention improvement can have a large revenue impact; moving first-replenishment retention from 50% to 55% was framed as roughly +10% revenue on that step.",
+    ],
+    actions: [
+      "Use OrderGroove cohort / subscriber retention as the baseline dashboard; the team already has access.",
+      "Track first replenishment and later-order retention separately.",
+      "Ron: define the target subscriber retention KPI.",
+    ],
+  },
+  experience: {
+    points: [
+      "Most subscription sign-ups come from the PDP, not the floating cart.",
+      "The team confirmed that the PDP contains more information, but the 30% first-order discount versus 25% recurring discount remains hard to read quickly.",
+      "The floating cart removes several explanations that are visible on the PDP.",
+    ],
+    actions: [
+      "Keep the PDP as the priority UX workstream.",
+      "Review whether the cart should repeat future price, recurrence and control messages more clearly.",
+    ],
+  },
+  confusion: {
+    points: [
+      "The 30% / 25% split is intentional: the stronger first-order incentive drives enrollment, while profitability comes from recurring orders.",
+      "The word ‘Subscribe’ can be understood in more than one context; Jerome confirmed the term is used both for recurring purchases and other sign-ups.",
+      "Frequency is currently visually secondary, while the customer has to process several concepts at once.",
+    ],
+    actions: [
+      "Do not change the commercial model only for simplicity until the new 25% recurring discount has enough retention data.",
+      "Test clearer recurring wording and stronger frequency visibility without weakening conversion.",
+    ],
+  },
+  options: {
+    points: [
+      "The team reacted positively to the clearer mock-ups, especially the flexible, friendly presentation with visible skip / swap / cancel controls.",
+      "Ron’s priority is retention rather than enrollment because enrollment is already strong.",
+    ],
+    actions: [
+      "Prepare a testable PDP version focused on clarity and recurring commitment.",
+      "Measure impact on both enrollment and subscriber retention before changing the pricing structure.",
+    ],
+  },
+  benchmark: {
+    points: [
+      "Amazon keeps a clear one-time versus Subscribe & Save choice; Sephora and Ulta use Auto-Replenish / Replenish & Save wording.",
+      "The examples shown use around 5% savings, while Yves Rocher currently offers 25% on recurring orders.",
+      "Competitors make frequency, recurring nature and cancellation / control language more explicit in different ways.",
+    ],
+    actions: [
+      "Borrow clarity patterns, not competitor discount levels.",
+      "Keep YR’s stronger value proposition but make the recurring commitment and controls unmistakable.",
+    ],
+  },
+  reasons: {
+    points: [
+      "The group aligned on using cancellation conversations as a source of insight, not only as a one-off save attempt.",
+      "Ron proposed asking: ‘What would make you keep the subscription?’ to identify whether the real lever is discount, shipping, frequency or something else.",
+      "Neva highlighted that answers will vary and need a clear follow-up process.",
+    ],
+    actions: [
+      "Neva: launch the cancellation survey, capture both the reason and ‘what would make you stay?’, and analyze the results.",
+      "Bruno: review cancellation reasons and retention learnings weekly.",
+      "Pay special attention to customers cancelling after the second recurring order / third product, where churn is unexpectedly high.",
+    ],
+  },
+  retention: {
+    points: [
+      "Change frequency, skip one occurrence and choose another product are already possible and were fully supported by Ron.",
+      "Customer Service should actively offer these existing controls instead of defaulting to cancellation.",
+      "A free next subscription order is attractive but may not be technically supported in OrderGroove today.",
+    ],
+    actions: [
+      "Include change frequency, skip, product swap and next-order-free among the retention options to evaluate.",
+      "Bruno: check with Achiad whether we can technically present several retention options and which desired options are feasible.",
+      "If a free next subscription order is not feasible, use the validated fallback: keep the order + coupon equal to the order value.",
+    ],
+  },
+  toolbox: {
+    points: [
+      "Ron prefers keeping the existing return-recovery rule simple: if the customer keeps a shipped order, offer a coupon equal to the order value.",
+      "Two months free was not supported as a standard offer; the main concern is creating a loophole that customers can take and then cancel immediately.",
+      "A choice-based retention page remains interesting, but only if the incentives can be controlled technically.",
+    ],
+    actions: [
+      "Bruno: check with Achiad how to build, track and control an A / B / C retention choice flow, and which desired options are technically feasible.",
+      "Keep ‘two months free’ as an idea, clearly marked NOT VALIDATED BY RON.",
+      "Use the keep-order + full-value coupon as the fallback when a free next order cannot be implemented.",
+    ],
+  },
+  kpis: {
+    points: [
+      "Subscriber retention is the preferred strategic view because one customer can hold several item subscriptions.",
+      "The new 25% recurring discount started mainly in June, so August is the first meaningful period to assess its effect for many 60-day customers.",
+      "Shipping was reduced from $12 to $4.99 for subscribers; Ron wants evidence on whether the next investment should go to discount or shipping.",
+    ],
+    actions: [
+      "Add Saved Subscription, but confirm the save only after a subsequent paid renewal.",
+      "Track retention by cohort and order number, especially first replenishment and third order onwards.",
+      "Neva: use the cancellation survey to identify whether discount, shipping, frequency, product or another factor is the stronger retention lever.",
+    ],
+  },
+  decisions: {
+    points: [
+      "Subscription is a strategic profit driver and retention is now the main question, not enrollment.",
+      "There is interest in making subscribers feel special with extra benefits beyond price: birthday / anniversary rewards, milestone rewards or a free 5th order were discussed as ideas.",
+      "No final decision was made on whether the next economic lever should be higher discount or lower shipping; more customer insight is required first.",
+    ],
+    actions: [
+      "Neva: launch and analyze the cancellation survey.",
+      "Bruno: own the weekly cancellation / retention review.",
+      "Bruno: check with Achiad whether multiple retention choices can be implemented and which options are technically feasible.",
+      "Ron: define the target for the subscriber retention KPI tracked in OrderGroove.",
+      "Team: next review in mid-September after vacations, using survey learnings, OrderGroove data and Achiad’s feasibility feedback.",
+    ],
+  },
+};
+
 const cancellationCases = [
   {
     reason: "I did not know I subscribed",
@@ -137,16 +258,24 @@ function Questions({ id }) {
   );
 }
 
-function Notes({ id, notes, setNotes }) {
+function Notes({ id }) {
+  const recap = meetingRecap[id] || { points: [], actions: [] };
   return (
     <aside className="notes">
-      <div className="notesTitle"><b>Notes / Decisions with Ron</b><small>Saved automatically in this browser</small></div>
-      <textarea value={notes[id] || ""} onChange={(e) => setNotes(id, e.target.value)} placeholder="Write decisions, answers, owners and next steps…" />
+      <div className="notesTitle"><b>Meeting recap · Aug 6</b><small>Key points and agreed follow-up</small></div>
+      <div className="recapBlock">
+        <strong>What we learned</strong>
+        <ul>{recap.points.map((x) => <li key={x}>{x}</li>)}</ul>
+      </div>
+      <div className="recapBlock actionsBlock">
+        <strong>Actions</strong>
+        <ul>{recap.actions.map((x) => <li key={x}>{x}</li>)}</ul>
+      </div>
     </aside>
   );
 }
 
-function Section({ id, n, title, children, notes, setNotes }) {
+function Section({ id, n, title, children }) {
   return (
     <section id={id} className="sectionCard">
       <div className="content">
@@ -154,7 +283,7 @@ function Section({ id, n, title, children, notes, setNotes }) {
         {children}
         <Questions id={id} />
       </div>
-      <Notes id={id} notes={notes} setNotes={setNotes} />
+      <Notes id={id} />
     </section>
   );
 }
@@ -164,9 +293,7 @@ function Offer({ title, price, copy, selected, badge }) {
 }
 
 export default function SubscriptionRetention() {
-  const [notes, setNotesState] = useState({});
   const [lightbox, setLightbox] = useState(null);
-  useEffect(() => { try { setNotesState(JSON.parse(localStorage.getItem("yr_subscription_notes") || "{}")); } catch (_) {} }, []);
   useEffect(() => {
     if (!lightbox) return undefined;
     const previousOverflow = document.body.style.overflow;
@@ -178,7 +305,6 @@ export default function SubscriptionRetention() {
       window.removeEventListener("keydown", closeOnEscape);
     };
   }, [lightbox]);
-  const setNotes = (id, value) => { const next = { ...notes, [id]: value }; setNotesState(next); try { localStorage.setItem("yr_subscription_notes", JSON.stringify(next)); } catch (_) {} };
 
   return <>
     <Head><title>Subscription Retention | Yves Rocher Hub</title></Head>
@@ -191,7 +317,7 @@ export default function SubscriptionRetention() {
 
       <nav className="jump">{sections.map(s => <a key={s.id} href={`#${s.id}`}><span>{s.n}</span>{s.title}</a>)}</nav>
 
-      <Section {...sections[0]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[0]}>
         <div className="overviewGrid">
           <article><i className="red">!</i><div><b>Current issue</b><p>Many cancellation requests appear to come from customers who did not fully understand the recurring model or future pricing.</p></div></article>
           <article><i className="green">◎</i><div><b>Objective</b><p>Make the value and recurring commitment explicit, while offering simple retention choices when customers hesitate.</p></div></article>
@@ -200,7 +326,7 @@ export default function SubscriptionRetention() {
         </div>
       </Section>
 
-      <Section {...sections[1]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[1]}>
         <div className="experienceGrid">
           <div><h3>Product Detail Page (PDP)</h3><img src="/subscription/pdp.png" alt="Current PDP subscription experience"/><div className="finding good"><b>What is clear</b><p>First-order discount, future discount, frequency and cancellation flexibility are visible.</p></div></div>
           <div><h3>Floating Cart</h3><img src="/subscription/cart.png" alt="Current cart subscription experience"/><div className="finding bad"><b>What is missing</b><p>Future price and cancellation reassurance disappear; recurring delivery becomes a secondary line.</p></div></div>
@@ -208,13 +334,13 @@ export default function SubscriptionRetention() {
         <div className="answer"><b>Conclusion</b><p>The wording is broadly consistent, but the UX is not equivalent. The PDP explains; the cart merely confirms.</p></div>
       </Section>
 
-      <Section {...sections[2]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[2]}>
         <div className="issueGrid">
           {[['%','Discount structure','30% today and 25% later require customers to process two different benefits.'],['$','Price hierarchy','The first price is dominant while the future recurring price is easy to miss.'],['↻','Recurring nature','“Subscribe” can be misunderstood as joining a site or newsletter.'],['▣','Delivery frequency','“Every 2 months” is small, grey and visually secondary.'],['→','Journey consistency','The cart removes information that was available on the PDP.']].map(([i,t,p]) => <article key={t}><i>{i}</i><b>{t}</b><p>{p}</p></article>)}
         </div>
       </Section>
 
-      <Section {...sections[3]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[3]}>
         <div className="optionsGrid">
           <article className="option"><span>Option A</span><h3>Maximum clarity</h3><small>Keep current commercial model</small><Offer title="Buy once" price="$34.00" copy="One-time purchase. No automatic renewal."/><Offer selected title="Auto-delivery every 2 months" price="$23.80 today" badge="Save 30%" copy="Then $25.50 every 2 months. Skip, pause or cancel anytime."/><div className="confirm">✓ I understand this is a recurring order billed every 2 months.</div></article>
           <article className="option recommended"><span>Option B · Recommended</span><h3>One simple recurring price</h3><small>Best for trust and recall</small><Offer title="Buy once" price="$34.00" copy="One-time purchase."/><Offer selected title="Auto-delivery" price="$25.50" badge="Save 25%" copy="The same price today and on every future delivery."/><div className="selectRow">Deliver every <b>2 months⌄</b></div></article>
@@ -222,7 +348,7 @@ export default function SubscriptionRetention() {
         </div>
       </Section>
 
-      <Section {...sections[4]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[4]}>
         <div className="benchmarkGrid visualBenchmark">
           <article>
             <div className="brandHead"><span>A</span><div><small>Amazon</small><h3>Subscribe & Save</h3></div></div>
@@ -261,9 +387,9 @@ export default function SubscriptionRetention() {
         <div className="benchmarkSummary"><b>Overall benchmark conclusion</b><p>The strongest pattern is not the discount level. It is the combination of a clear purchase-mode choice, an explicit recurring cadence, transparent future charges and visible customer control.</p></div>
       </Section>
 
-      <Section {...sections[5]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[5]}>
         <div className="reasonIntro">
-          <div className="reasonPrompt"><small>Agent question</small><h3>“What is the main reason you want to cancel?”</h3><p>Capture one primary reason, identify the real customer need, then select the most relevant retention trigger.</p></div>
+          <div className="reasonPrompt"><small>Agent questions</small><h3>“Why do you want to cancel?”</h3><p>Then ask: <b>“What would make you keep the subscription?”</b> Capture the primary reason and the lever that could change the decision.</p></div>
           <div className="triggerLegend">
             <b>Retention triggers</b>
             <span className="trigger skip">Skip one occurrence</span>
@@ -286,7 +412,7 @@ export default function SubscriptionRetention() {
         <div className="caseNote"><b>CS principle:</b> propose one relevant option, not all three. The offer should answer the customer’s real reason for leaving.</div>
       </Section>
 
-      <Section {...sections[6]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[6]}>
         <div className="retentionGrid">
           <article className="featured"><i>↻</i><small>Option 1 · Preferred</small><h3>Change the frequency</h3><p>Move the customer to a rhythm that matches their actual product consumption, for example every 3, 4 or 6 months.</p><b>Best for:</b><span>Too much product, bottle not finished, or a different delivery rhythm needed.</span></article>
           <article><i>Ⅱ</i><small>Option 2</small><h3>Skip one occurrence</h3><p>Cancel the next scheduled shipment. No product and no payment. The subscription remains active.</p><b>Best for:</b><span>Travel, temporary stock surplus or a short-term budget issue.</span></article>
@@ -296,17 +422,17 @@ export default function SubscriptionRetention() {
         <div className="guardrail"><b>Guardrail to define:</b> eligibility, maximum value, number of uses per customer and agent approval limits.</div>
       </Section>
 
-      <Section {...sections[7]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[7]}>
         <div className="toolboxGrid">
-          <article><i>$30</i><small>Financial incentive</small><h3>Give a $30 incentive</h3><p>Offer a controlled credit linked to a future subscription order rather than an immediate cash refund.</p><b>Decision needed</b><span>Eligibility, expiry, minimum order and whether the value is fixed or customer-based.</span></article>
-          <article className="featured"><i>2M</i><small>Strong recovery</small><h3>Give two months free</h3><p>Pause billing or cover the next subscription period to rebuild trust after a poor or confusing experience.</p><b>Decision needed</b><span>Does “two months free” mean one free delivery, two skipped payments, or a delayed renewal?</span></article>
-          <article><i>A/B/C</i><small>Guided choice</small><h3>Offer three clear options</h3><p>Let the customer choose between Option A, Option B or Option C instead of forcing one standard retention answer.</p><b>To check with Achiad</b><span>How can the options be built, tracked and limited in the cancellation flow?</span></article>
-          <article><i>Gift</i><small>Emotional value</small><h3>Add a gift</h3><p>Use a mini product, accessory or discovery item when a gift creates more perceived value than a discount.</p><b>Decision needed</b><span>Gift catalogue, stock availability, fulfilment cost and eligible customer segments.</span></article>
+          <article className="featured"><i>✓</i><small>Approved / existing</small><h3>Keep order + full-value coupon</h3><p>If a subscriber wants to return a shipped order, offer a coupon equal to the order value if they keep the product.</p><b>Meeting position</b><span>Ron supports using the same recovery rule already used for non-subscription orders.</span></article>
+          <article><i>FREE</i><small>Preferred if technically possible</small><h3>Next subscription order free</h3><p>Keep the current order and make the next recurring subscription order free.</p><b>Technical check</b><span>Ron likes the idea, but OrderGroove may not currently support making the next automated order free.</span></article>
+          <article><i>A/B/C</i><small>To explore</small><h3>Controlled choice page</h3><p>Present a small set of approved save options that match the customer reason, rather than one generic incentive.</p><b>To check with Achiad</b><span>How to build, track and restrict the choices so customers cannot take an incentive and immediately exploit the flow.</span></article>
+          <article><i>★</i><small>Future loyalty concept</small><h3>Subscriber-only rewards</h3><p>Make long-term subscribers feel special with milestone or anniversary benefits.</p><b>Ideas from the meeting</b><span>Birthday / anniversary reward, special subscriber benefit, or potentially a free 5th order.</span></article>
         </div>
-        <div className="guardrail"><b>Recommended approach:</b> create a simple offer matrix by cancellation reason, customer value and subscription history, with clear agent limits.</div>
+        <div className="guardrail"><b>Two months free:</b> keep as an option to explore, but mark it clearly as <strong>NOT VALIDATED BY RON</strong>. Any incentive flow needs technical guardrails to avoid immediate cancellation after redemption.</div>
       </Section>
 
-      <Section {...sections[8]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[8]}>
         <div className="kpiHero">
           <small>New management KPI</small>
           <h3>Saved Subscription</h3>
@@ -319,14 +445,25 @@ export default function SubscriptionRetention() {
           <article><span>03</span><h3>Confirmed retention rate</h3><p>Saved customers who complete the next paid renewal, not only accept the initial offer.</p></article>
           <article><span>04</span><h3>Saved recurring revenue</h3><p>Estimated subscription revenue preserved through retention actions.</p></article>
           <article><span>05</span><h3>Cost per saved subscription</h3><p>Total incentive, gift and free-product cost divided by confirmed saves.</p></article>
-          <article><span>06</span><h3>Best-performing trigger</h3><p>Compare frequency change, skip, free product, product swap, $30 incentive, two months free and gift.</p></article>
+          <article><span>06</span><h3>Best-performing trigger</h3><p>Compare frequency change, skip, product swap, full-value coupon and, if technically feasible, a free next recurring order.</p></article>
         </div>
         <div className="kpiNote"><b>Important:</b> track both the immediate save and the next successful paid renewal, otherwise the KPI may overstate real retention.</div>
       </Section>
 
-      <Section {...sections[9]} notes={notes} setNotes={setNotes}>
+      <Section {...sections[9]}>
         <div className="decisionGrid">
-          {['UX option and wording','Commercial pricing model','Retention offer eligibility','$30 incentive rules','Two months free definition','A / B / C technical feasibility with Achiad','Gift strategy','Saved Subscription KPI target','Customer Service authority','Test duration and reporting'].map((x,i)=><article key={x}><span>{String(i+1).padStart(2,'0')}</span><h3>{x}</h3><p>Decision</p><div></div><p>Owner / Deadline</p><div></div></article>)}
+          {[
+            ['Subscriber retention KPI','Track in OrderGroove. Target to be defined.','Ron · Target TBD'],
+            ['Cancellation survey','Launch survey and analyze why customers cancel and what would make them stay.','Neva'],
+            ['Weekly cancellation review','Review reasons, retention learnings and saved subscriptions weekly.','Bruno'],
+            ['Retention option flow','Check whether several retention choices can be offered and which desired options are technically feasible.','Bruno → Achiad'],
+            ['Free next order','Keep as a desired option subject to technical feasibility.','Bruno → Achiad'],
+            ['Fallback','If free next order is not feasible: keep the order + coupon equal to order value.','Validated'],
+            ['Discount vs shipping','Use survey results to understand which lever matters more to retention.','Neva · Survey'],
+            ['PDP origin','Most subscriptions originate from the PDP; consider this fact in UX decisions.','No specific action'],
+            ['Two months free','Keep as an idea only.','NOT VALIDATED BY RON'],
+            ['Next review','Review survey, OrderGroove data and technical feasibility.','Mid-September'],
+          ].map(([x,decision,owner],i)=><article key={x}><span>{String(i+1).padStart(2,'0')}</span><h3>{x}</h3><p>Decision / outcome</p><div>{decision}</div><p>Owner / timing</p><div>{owner}</div></article>)}
         </div>
       </Section>
 
@@ -359,7 +496,7 @@ export default function SubscriptionRetention() {
       html{scroll-behavior:smooth} body{background:#f7f4ee;color:#17351f}.page{min-height:100vh;padding:22px 28px 60px;background:linear-gradient(145deg,#faf8f3,#f1f6ef)}
       .page>*{box-sizing:border-box}.hero,.jump,.sectionCard{max-width:1500px;margin-left:auto;margin-right:auto}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:34px;padding:34px 8px 26px}.crumb{color:#587138;font-weight:800;margin:0 0 18px}.hero h1{font:800 clamp(42px,5vw,68px)/1.02 Georgia,serif;margin:0;color:#123d24}.hero h3{font-size:26px;margin:10px 0 12px;color:#252b27}.lead{font-size:17px;line-height:1.65;max-width:780px;color:#556059}.goal{align-self:center;display:flex;gap:16px;background:#fff;border:1px solid #bfd5bc;border-radius:22px;padding:24px;box-shadow:0 14px 38px rgba(34,72,42,.08)}.goal>span{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#eaf3e4;font-size:28px}.goal b{font-size:17px}.goal p{line-height:1.55;margin:8px 0 0;color:#4f5c53}
       .jump{display:flex;gap:10px;overflow:auto;padding:0 0 16px}.jump a{min-width:160px;background:#fff;border:1px solid #d7e2d4;border-radius:14px;padding:11px 13px;text-decoration:none;color:#243b2a;font-weight:800;font-size:13px}.jump a span{display:block;color:#78904b;font-size:11px;margin-bottom:4px}
-      .sectionCard{display:grid;grid-template-columns:minmax(0,1fr) 390px;background:#fff;border:1px solid #e1e5dc;border-radius:24px;margin-bottom:22px;overflow:hidden;box-shadow:0 16px 42px rgba(33,62,38,.08)}.content{padding:28px 30px}.sectionTitle{display:flex;align-items:center;gap:12px;margin-bottom:23px}.sectionTitle span{color:#58753c;font-weight:900}.sectionTitle h2{font:800 28px/1.15 Georgia,serif;margin:0;color:#123d24}.notes{padding:24px;background:#fbfaf6;border-left:1px solid #e7e5dc;display:flex;flex-direction:column;min-height:420px}.notesTitle b{display:block;font-size:16px}.notesTitle small{display:block;color:#8a918b;margin-top:4px}.notes textarea{flex:1;min-height:260px;margin-top:14px;border:1px solid #d9d9cf;border-radius:16px;padding:16px;font:14px/1.6 Inter,Arial;resize:vertical;background:#fff}
+      .sectionCard{display:grid;grid-template-columns:minmax(0,1fr) 390px;background:#fff;border:1px solid #e1e5dc;border-radius:24px;margin-bottom:22px;overflow:hidden;box-shadow:0 16px 42px rgba(33,62,38,.08)}.content{padding:28px 30px}.sectionTitle{display:flex;align-items:center;gap:12px;margin-bottom:23px}.sectionTitle span{color:#58753c;font-weight:900}.sectionTitle h2{font:800 28px/1.15 Georgia,serif;margin:0;color:#123d24}.notes{padding:24px;background:#fbfaf6;border-left:1px solid #e7e5dc;display:flex;flex-direction:column;min-height:420px}.notesTitle b{display:block;font-size:16px}.notesTitle small{display:block;color:#8a918b;margin-top:4px}.recapBlock{margin-top:14px;padding:14px 15px;border-radius:14px;background:#fff;border:1px solid #e0e4dc}.recapBlock strong{display:block;color:#173f28;font-size:13px;margin-bottom:8px}.recapBlock ul{margin:0;padding-left:18px}.recapBlock li{font-size:12px;line-height:1.48;color:#4f5c53;margin:0 0 7px}.recapBlock li:last-child{margin-bottom:0}.actionsBlock{background:#edf6e9;border-color:#cfe0c8}.actionsBlock strong{color:#2c6b3c}.notesTitle.manual{margin-top:16px}.notes textarea{flex:1;min-height:120px;margin-top:14px;border:1px solid #d9d9cf;border-radius:16px;padding:16px;font:14px/1.6 Inter,Arial;resize:vertical;background:#fff}
       .questionBox{margin-top:22px;background:#f2f6e7;border:1px solid #d5e0b5;border-radius:17px;padding:16px 18px}.questionTitle{display:flex;align-items:center;gap:9px;color:#264c2d}.questionTitle span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#dce98a;font-weight:900}.questionBox ul{margin:12px 0 0;padding-left:22px;display:grid;gap:8px;color:#35483a;line-height:1.45}.questionBox li::marker{color:#6f8837}
       .overviewGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.overviewGrid article{display:flex;gap:14px;padding:18px;border:1px solid #e3e8df;border-radius:18px;background:#fcfdfb}.overviewGrid i{flex:0 0 44px;height:44px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:22px}.red{background:#ffe4df;color:#c63b2d}.green{background:#e5f2df;color:#2f7b3a}.orange{background:#ffedd7;color:#d76b17}.blue{background:#e1effa;color:#2571ad}.overviewGrid b{font-size:16px}.overviewGrid p{margin:7px 0 0;color:#526057;line-height:1.55}
       .experienceGrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.experienceGrid h3{font-size:18px;margin:0 0 10px}.experienceGrid img{width:100%;height:390px;object-fit:contain;background:#fafafa;border:1px solid #e2e5df;border-radius:16px}.finding{margin-top:10px;padding:13px 15px;border-radius:14px}.finding p{margin:5px 0 0;line-height:1.45}.finding.good{background:#eaf5e8}.finding.bad{background:#fff0e3}.answer{display:flex;gap:14px;margin-top:16px;background:#153f27;color:#fff;padding:16px 18px;border-radius:15px}.answer b{color:#dce98a}.answer p{margin:0;line-height:1.5}
