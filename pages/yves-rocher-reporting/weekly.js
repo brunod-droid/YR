@@ -106,7 +106,7 @@ export default function WeeklyReport() {
             <MetricCard label="Tickets Created" value={formatNumber(metrics.ticketsCreatedRaw)} hint="Raw tickets from volume/file" />
             <MetricCard label="Assigned Tickets" value={formatNumber(metrics.actionableTickets)} hint={`${formatNumber(metrics.unassignedTickets)} unassigned / not handled`} />
             <MetricCard label="Paid Orders" value={formatNumber(metrics.ordersCount)} hint={`${formatNumber(metrics.unpaidOrRemovedOrders)} unpaid / cancelled / duplicate removed`} />
-            <MetricCard label="Global FRT source" value={formatHours(metrics.slaValue)} hint="Fallback from customer experience" />
+            <MetricCard label="Global FRT source" value={metrics.globalFrtSource || "Not available"} hint={metrics.firstResponseTime ? `Average FRT: ${formatHours(metrics.firstResponseTime)}` : "No global FRT data available"} />
           </div>
 
           <div style={{ ...cardStyle, marginTop: 20 }}>
