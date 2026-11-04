@@ -118,7 +118,7 @@ export default function UploadPage() {
           uploadDetails.push({
             file: file.name,
             status: "Rejected",
-            message: "Unknown file type. Use ticket-volume, workload, customer-experience, agents-metrics, channels-metrics, tickets, order/orders/shopify, finance/cost, or social."
+            message: "Unknown file type. Use ticket-volume, performance_ticket_attributes_tags_table, workload, customer-experience, agents-metrics, channels-metrics, tickets, order/orders/shopify, finance/cost, or social."
           });
           continue;
         }
