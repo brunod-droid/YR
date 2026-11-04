@@ -91,12 +91,12 @@ export default function WeeklyReport() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 20 }}>
             <HighlightKpi label="CSAT" value={metrics.csat ? formatNumber(metrics.csat, 2) : "Not found"} hint={metrics.csatCount ? `${statusHint("csat", metrics.csat)} · ${metrics.csatCount} CSAT responses` : `${statusHint("csat", metrics.csat)} · response count not found`} color={metrics.csat >= 4.2 ? "#16a34a" : "#f59e0b"} />
             <HighlightKpi label="SLA Global" value={formatHours(metrics.slaGlobal)} hint={`${statusHint("sla", metrics.slaGlobal, "h")} · tickets created from week start`} color={metrics.slaGlobal ? "#16a34a" : "#f59e0b"} />
-            <HighlightKpi label="SLA Notch" value={formatHours(metrics.slaNotch)} hint="AI answer only · tickets created from week start" color={metrics.slaNotch ? "#16a34a" : "#64748b"} />
+            <HighlightKpi label="SLA Notch" value={metrics.slaNotch === null ? "Not available" : formatHours(metrics.slaNotch)} hint={metrics.slaNotch === null ? "No positive Notch FRT recorded; check AI export" : "AI answer only · tickets created from week start"} color={metrics.slaNotch ? "#16a34a" : "#64748b"} />
             <HighlightKpi label="SLA Agents" value={formatHours(metrics.slaAgents)} hint="Human agents only · tickets created from week start" color={metrics.slaAgents ? "#16a34a" : "#64748b"} />
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 20 }}>
-            <HighlightKpi label="Tickets / Order" value={`${formatNumber(metrics.ticketsPerOrder * 100, 0)}%`} hint={`${formatNumber(metrics.actionableTickets)} assigned tickets / ${formatNumber(metrics.ordersCount)} paid orders`} color="#2563eb" />
+            <HighlightKpi label="Interactions / Paid Order" value={metrics.interactionsPerOrder !== null ? formatNumber(metrics.interactionsPerOrder, 2) : "Not available"} hint={metrics.interactionsPerOrder !== null ? `${formatNumber(metrics.normalizedInteractions.interactions)} interactions / ${formatNumber(metrics.ordersCount)} paid orders · chat once, Yotpo excluded` : "Reimport ticket export to recover channel and message counts"} color="#2563eb" />
             <HighlightKpi label="Backlog" value={formatNumber(metrics.backlog)} hint="Open tickets" color="#7c3aed" />
             <HighlightKpi label="Messages sent" value={formatNumber(metrics.totalMessagesSent)} hint="Customer-facing messages" color="#0f766e" />
             <HighlightKpi label="Resolution Time" value={metrics.resolutionTime ? `${formatNumber(metrics.resolutionTime, 1)}h` : "Not found"} hint="Average resolution time" color="#ea580c" />
@@ -106,7 +106,7 @@ export default function WeeklyReport() {
             <MetricCard label="Tickets Created" value={formatNumber(metrics.ticketsCreatedRaw)} hint="Raw tickets from volume/file" />
             <MetricCard label="Assigned Tickets" value={formatNumber(metrics.actionableTickets)} hint={`${formatNumber(metrics.unassignedTickets)} unassigned / not handled`} />
             <MetricCard label="Paid Orders" value={formatNumber(metrics.ordersCount)} hint={`${formatNumber(metrics.unpaidOrRemovedOrders)} unpaid / cancelled / duplicate removed`} />
-            <MetricCard label="Global FRT source" value={metrics.globalFrtSource || "Not available"} hint={metrics.firstResponseTime ? `Average FRT: ${formatHours(metrics.firstResponseTime)}` : "No global FRT data available"} />
+            <MetricCard label="Global FRT" value={formatHours(metrics.firstResponseTime)} hint={metrics.globalFrtSource || "Not available"} />
           </div>
 
           <div style={{ ...cardStyle, marginTop: 20 }}>
@@ -119,12 +119,23 @@ export default function WeeklyReport() {
 
           <div style={{ ...cardStyle, marginTop: 20 }}>
             <h2 style={{ fontSize: 24, fontWeight: 900 }}>Top Drivers</h2>
-            {metrics.drivers.length ? metrics.drivers.map((item) => <div key={item.driver} style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", borderBottom: "1px solid #e5e7eb" }}><span>{item.driver}</span><b>{item.count}</b></div>) : <p style={{ color: "#64748b" }}>No drivers detected yet.</p>}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(310px, 1fr))", gap: 24 }}>
+              {[{ title: "Tags", rows: metrics.drivers, source: metrics.driverSource }, { title: "Subjects / Intents", rows: metrics.subjects, source: metrics.subjectSource }].map((section) => (
+                <div key={section.title}>
+                  <h3 style={{ marginBottom: 4 }}>{section.title}</h3>
+                  <div style={{ color: "#64748b", fontSize: 12, marginBottom: 10 }}>{section.source}</div>
+                  {section.rows.length ? section.rows.map((item) => <div key={item.driver} style={{ display: "flex", justifyContent: "space-between", gap: 12, padding: "10px 0", borderBottom: "1px solid #e5e7eb" }}><span>{item.driver}</span><b style={{ whiteSpace: "nowrap" }}>{formatNumber(item.count)} {item.share ? `(${item.share})` : ""}</b></div>) : <p style={{ color: "#64748b" }}>No data found for this week. Check the import diagnostics below and reimport the relevant Gorgias file.</p>}
+                </div>
+              ))}
+            </div>
           </div>
 
           <div style={{ ...cardStyle, marginTop: 20 }}>
             <button onClick={() => setShowDebug(!showDebug)} style={{ background: "#0f172a", color: "#fff", border: "none", borderRadius: 10, padding: "10px 14px", fontWeight: 800, cursor: "pointer" }}>{showDebug ? "Hide file diagnostics" : "Show file diagnostics"}</button>
             {showDebug && <div style={{ marginTop: 16, color: "#475569", lineHeight: 1.7 }}>
+              <div><b>Tags rows:</b> {metrics.debug?.ticketTagsRows ?? 0} · <b>Intents rows:</b> {metrics.debug?.intentsRows ?? 0}</div>
+              <div><b>Tags columns:</b> {(metrics.debug?.ticketTagsColumns || []).join(", ") || "No tags file loaded"}</div>
+              <div><b>Intents columns:</b> {(metrics.debug?.intentsColumns || []).join(", ") || "No intents file loaded"}</div>
               <div><b>Order columns:</b></div><pre style={{ whiteSpace: "pre-wrap", background: "#f8fafc", padding: 12, borderRadius: 12 }}>{(metrics.debug?.orderColumns || []).join(", ")}</pre>
               <div><b>Ticket columns:</b></div><pre style={{ whiteSpace: "pre-wrap", background: "#f8fafc", padding: 12, borderRadius: 12 }}>{(metrics.debug?.ticketColumns || []).join(", ")}</pre>
               <div><b>SLA date filter:</b> Creation date ≥ {metrics.debug?.reportStartDate || "week start not detected"}</div>
