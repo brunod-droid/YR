@@ -13,7 +13,13 @@ function statusHint(type, value, unit) {
   return "";
 }
 
-function formatHours(value) { return value ? `${formatNumber(value, 1)}h` : "—"; }
+function formatHours(value) {
+  if (!Number.isFinite(value) || value < 0) return "—";
+  if (value === 0) return "0s";
+  if (value < 1 / 60) return `${Math.max(1, Math.round(value * 3600))}s`;
+  if (value < 0.1) return `${formatNumber(value * 60, 1)}min`;
+  return `${formatNumber(value, 1)}h`;
+}
 
 function HighlightKpi({ label, value, hint, color }) {
   return (
@@ -91,12 +97,12 @@ export default function WeeklyReport() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 20 }}>
             <HighlightKpi label="CSAT" value={metrics.csat ? formatNumber(metrics.csat, 2) : "Not found"} hint={metrics.csatCount ? `${statusHint("csat", metrics.csat)} · ${metrics.csatCount} CSAT responses` : `${statusHint("csat", metrics.csat)} · response count not found`} color={metrics.csat >= 4.2 ? "#16a34a" : "#f59e0b"} />
             <HighlightKpi label="SLA Global" value={formatHours(metrics.slaGlobal)} hint={`${statusHint("sla", metrics.slaGlobal, "h")} · tickets created from week start`} color={metrics.slaGlobal ? "#16a34a" : "#f59e0b"} />
-            <HighlightKpi label="SLA Notch" value={metrics.slaNotch === null ? "Not available" : formatHours(metrics.slaNotch)} hint={metrics.slaNotch === null ? "No positive Notch FRT recorded; check AI export" : "AI answer only · tickets created from week start"} color={metrics.slaNotch ? "#16a34a" : "#64748b"} />
+            <HighlightKpi label="SLA Notch" value={metrics.slaNotch == null ? "Not available" : formatHours(metrics.slaNotch)} hint={metrics.slaNotch == null ? "No measurable Notch FRT recorded; check AI export" : "AI answer only · tickets created from week start"} color={metrics.slaNotch ? "#16a34a" : "#64748b"} />
             <HighlightKpi label="SLA Agents" value={formatHours(metrics.slaAgents)} hint="Human agents only · tickets created from week start" color={metrics.slaAgents ? "#16a34a" : "#64748b"} />
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20, marginTop: 20 }}>
-            <HighlightKpi label="Interactions / Paid Order" value={metrics.interactionsPerOrder !== null ? formatNumber(metrics.interactionsPerOrder, 2) : "Not available"} hint={metrics.interactionsPerOrder !== null ? `${formatNumber(metrics.normalizedInteractions.interactions)} interactions / ${formatNumber(metrics.ordersCount)} paid orders · chat once, Yotpo excluded` : "Reimport ticket export to recover channel and message counts"} color="#2563eb" />
+            <HighlightKpi label="Tickets / Order" value={metrics.ordersCount ? `${formatNumber(metrics.ticketsPerOrder * 100, 1)}%` : "Not available"} hint={metrics.ordersCount ? `${formatNumber(metrics.actionableTickets)} assigned tickets / ${formatNumber(metrics.ordersCount)} paid orders` : "Paid order count missing"} color="#2563eb" />
             <HighlightKpi label="Backlog" value={formatNumber(metrics.backlog)} hint="Open tickets" color="#7c3aed" />
             <HighlightKpi label="Messages sent" value={formatNumber(metrics.totalMessagesSent)} hint="Customer-facing messages" color="#0f766e" />
             <HighlightKpi label="Resolution Time" value={metrics.resolutionTime ? `${formatNumber(metrics.resolutionTime, 1)}h` : "Not found"} hint="Average resolution time" color="#ea580c" />
@@ -107,6 +113,12 @@ export default function WeeklyReport() {
             <MetricCard label="Assigned Tickets" value={formatNumber(metrics.actionableTickets)} hint={`${formatNumber(metrics.unassignedTickets)} unassigned / not handled`} />
             <MetricCard label="Paid Orders" value={formatNumber(metrics.ordersCount)} hint={`${formatNumber(metrics.unpaidOrRemovedOrders)} unpaid / cancelled / duplicate removed`} />
             <MetricCard label="Global FRT" value={formatHours(metrics.firstResponseTime)} hint={metrics.globalFrtSource || "Not available"} />
+          </div>
+
+          <div style={{ ...cardStyle, marginTop: 20, borderLeft: "4px solid #2563eb" }}>
+            <div style={{ fontSize: 13, color: "#64748b", fontWeight: 800 }}>Normalized Interactions / Paid Order</div>
+            <div style={{ fontSize: 28, fontWeight: 900, marginTop: 6 }}>{metrics.interactionsPerOrder !== null ? formatNumber(metrics.interactionsPerOrder, 2) : "Not available"}</div>
+            <div style={{ color: "#475569", marginTop: 5 }}>{metrics.interactionsPerOrder !== null ? `${formatNumber(metrics.normalizedInteractions.interactions)} interactions / ${formatNumber(metrics.ordersCount)} paid orders · chat once, Yotpo excluded` : "Ticket channel/message data incomplete"}</div>
           </div>
 
           <div style={{ ...cardStyle, marginTop: 20 }}>
